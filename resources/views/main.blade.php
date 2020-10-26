@@ -150,7 +150,7 @@
 			<p class="catalog-title"><span>Каталог</span> товаров</p>
 			<div class="catalog-items">
 				@foreach ($products as $product)
-					<div class="catalog-item" catalog-item catalog-item-id="{{$product->id}}">
+					<div class="catalog-item" catalog-item catalog-item-id="{{$product->id}}" catalog-item-price="{{$product->price}}">
 						<div class="catalog-item-border">
 							@if($product->material_description == 'Плотный')
 								<div class="catalog-item-label">Плотный</div>
@@ -198,6 +198,9 @@
 									<span>{{ $product->price }} грн</span>
 									<button type="submit" class="catalog-price-submit" catalog-item-order>{{__('Заказать')}}</button>
 								</div>
+								<div class="catalog-price-add-additional" >
+									<a catalog-item-in-cart>{{__('Товар в корзине')}}</a>
+								</div>
 							@else
 								<div class="catalog-price-check">
 									<a class="catalog-price-check-btn">Уточнить цену</a>
@@ -208,13 +211,6 @@
 								<a class="catalog-price-check-btn">Уточнить цену</a>
 							</div>
 						@endif
-						<div class="catalog-price-add-additional" catalog-item-in-cart >
-							<a>{{__('Товар в корзине')}}</a>
-						</div>
-						<div class="catalog-price-additional"  catalog-item-add-to-cart>
-							<span>{{ $product->price }} грн</span>
-							<button type="submit" class="catalog-price-submit" catalog-item-order>{{__('Заказать')}}</button>
-						</div>
 					</div>
 				@endforeach
 			</div>
@@ -496,62 +492,7 @@
 				<div class="basket__title-item units">Ед.</div>
 				<div class="basket__title-item subtotal">Итого, грн</div>
 			</div>
-			<div class="basket__product" id="basket__product" >
-				@foreach (Cart::content() as $item)
-					<div class="basket__product-container" data-id="{{ $item->rowId }}">
-						<div class="basket__product-desc name">
-							<p class="basket__product-desc-title">{{$item->name}}</p>
-							<div class="basket__img">
-								<img src="{{ asset('storage/'.$item->options->image) }}" alt="">
-							</div>
-							<p class="basket__product-desc-min">Минимальный заказ @if($item->options->min_quantity != null) {{$item->options->min_quantity}} @else 200 @endif шт</p>
-						</div>
-						<div class="basket__product-desc characteristics">
-							<table>
-								<tr>
-									<td>Размер</td>
-									<td>{!! App\Models\Product::find($item->id)->size !!}</td>
-								</tr>
-								<tr>
-									<td>Радиус колеса</td>
-									<td>{!! App\Models\Product::find($item->id)->wheel_radius !!}</td>
-								</tr>
-								<tr>
-									<td>Упаковка</td>
-									<td>{!! App\Models\Product::find($item->id)->packaging !!}</td>
-								</tr>
-								<tr>
-									<td>Цвет</td>
-									<td>{!! App\Models\Product::find($item->id)->color !!}</td>
-								</tr>
-								<tr>
-									<td>Материал</td>
-									<td>{!! App\Models\Product::find($item->id)->material !!}</td>
-								</tr>
-							</table>
-						</div>
-						<div class="basket__product-desc price">{!! $item->price / App\Models\Product::find($item->id)->packaging !!}</div>
-						<div class="bastet__product-desc number">
-							<div class="quantity-block" >
-								<a class="quantity-arrow-minus minus" data-id="{{ $item->rowId }}"><img src="img/minus.png"></a>
-								<input class="quantity-num" type="number" value="{{$item->qty}}" min="1" data-id="{{ $item->rowId }}"/>
-								<a class="quantity-arrow-plus plus" data-id="{{ $item->rowId }}"><img src="img/plus.png"></a>
-							</div>
-						</div>
-						<div class="bastet__product-desc units">шт.</div>
-						<div class="bastet__product-desc subtotal" data-id="{{ $item->rowId }}">{!! $item->subtotal()  !!}</div>
-						<a class="delete-item" id="delete-item" data-id="{{ $item->rowId }}" product-id="{{ $item->id }}">X</a>
-						{{-- <form action="{{ route('cart.destroy', app()->getLocale()) }}" method="post">
-							{{ csrf_field() }}
-							{{ method_field('DELETE') }}
-							<input type="hidden" name="product" value="{{$item->rowId}}">
-							<button type="sumbit" class="delete" id="delete">&times;</button>
-						</form> --}}
-					</div>
-				@endforeach
-
-				{{--  --}}
-
+			<div class="basket__product" id="basket__product" basket-items>
 				<div class="basket__product-container" id="basket__product-container" data-id="rowId" style="display:none;" cart-item-new>
 					<div class="basket__product-desc name">
 						<p class="basket__product-desc-title" cart-item-name></p>
@@ -587,38 +528,29 @@
 						</table>
 					</div>
 					<div class="basket__product-desc price" cart-item-price></div>
-					<div class="bastet__product-desc number">
+					<div class="basket__product-desc number">
 						<div class="quantity-block">
 							<a class="quantity-arrow-minus minus" cart-item-minus cart-item-change-quantity><img src="img/minus.png"></a>
 							<input class="quantity-num" type="number" value="" min="1" cart-item-quantity/>
 							<a class="quantity-arrow-plus plus" cart-item-plus cart-item-change-quantity><img src="img/plus.png"></a>
 						</div>
 					</div>
-					<div class="bastet__product-desc units">шт.</div>
-					<div class="bastet__product-desc subtotal" cart-item-subtotal></div>
+					<div class="basket__product-desc units">шт.</div>
+					<div class="basket__product-desc subtotal" cart-item-subtotal></div>
 					<a class="delete-item" id="delete-item" cart-item-delete>X</a>
 				</div>
-
-				{{--  --}}
-
 				<div class="basket-finish-price">
-					<p><span class="basket-finish-price-units" cart-items-count>{{Cart::instance('default')->count()}}</span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price>{{Cart::total()}} грн</span></p>
+					<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span><span class="basket-finish-price-total">грн</span></p>
 				</div>
 				<div class="basket-btn">
 					<div>
-						@if(Cart::instance('default')->count() > 0)
-							<form class="" action="{{ route('checkout.index', app()->getLocale()) }}" method="get">
-								<button class="basket-btn-continue" id="basket-btn-continue">Оформить заказ</button>
-							</form>
-							<button class="basket-btn-return" id="basket-btn-return">Продолжить покупки</button>
-						@else
-							<form class="" action="{{ route('checkout.index', app()->getLocale()) }}" method="get">
-								<button class="basket-btn-continue" id="basket-btn-continue">Оформить заказ</button>
-							</form>
-							<button class="basket-btn-return" id="basket-btn-return">Продолжить покупки</button>
-						@endif
+						<form class="" action="{{ route('checkout.index', app()->getLocale()) }}" method="get">
+							<button class="basket-btn-continue" id="basket-btn-continue">Оформить заказ</button>
+						</form>
+						<button class="basket-btn-return" id="basket-btn-return">Продолжить покупки</button>
 					</div>
 					<div>
+						<button class="basket-btn-continue" id="basket-btn-continue" clear-cart>Очистить корзину</button>
 					</div>
 				</div>
 			</div>
@@ -679,57 +611,9 @@
 					<div class="basket__title-item units">Ед.</div>
 					<div class="basket__title-item total">Итого, грн</div>
 				</div>
-				<div class="basket__product">
-
-					@foreach (Cart::content() as $item)
-						<div class="basket__product-container" data-id="{{ $item->rowId }}">
-							<div class="basket__product-desc name">
-								<p class="basket__product-desc-title">{{$item->name}}</p>
-								<div class="basket__img">
-									<img src="{{ asset('storage/'.$item->options->image) }}" alt="">
-								</div>
-									<p class="basket__product-desc-min">Минимальный заказ @if($item->options->min_quantity != null) {{$item->options->min_quantity}} @else 200 @endif шт</p>
-							</div>
-							<div class="basket__product-desc characteristics">
-								<table>
-									<tr>
-										<td>Размер</td>
-										<td>{!! App\Models\Product::find($item->id)->size !!}</td>
-									</tr>
-									<tr>
-										<td>Радиус колеса</td>
-										<td>{!! App\Models\Product::find($item->id)->wheel_radius !!}</td>
-									</tr>
-									<tr>
-										<td>Упаковка</td>
-										<td>{!! App\Models\Product::find($item->id)->packaging !!}</td>
-									</tr>
-									<tr>
-										<td>Цвет</td>
-										<td>{!! App\Models\Product::find($item->id)->color !!}</td>
-									</tr>
-									<tr>
-										<td>Материал</td>
-										<td>{!! App\Models\Product::find($item->id)->material !!}</td>
-									</tr>
-								</table>
-							</div>
-							<div class="basket__product-desc price">{!! $item->price / App\Models\Product::find($item->id)->packaging !!}</div>
-							<div class="bastet__product-desc number">
-								<div class="quantity-block" >
-									<a class="quantity-arrow-minus minus" data-id="{{ $item->rowId }}"><img src="img/minus.png"></a>
-									<input class="quantity-num" type="number" value="{{$item->qty}}" min="1" data-id="{{ $item->rowId }}"/>
-									<a class="quantity-arrow-plus plus" data-id="{{ $item->rowId }}"><img src="img/plus.png"></a>
-								</div>
-							</div>
-							<div class="bastet__product-desc units">шт.</div>
-							<div class="bastet__product-desc subtotal" data-id="{{ $item->rowId }}">{!! $item->subtotal()  !!}</div>
-							<a class="delete-item" id="delete-item" data-id="{{ $item->rowId }}" product-id="{{ $item->id }}">X</a>
-						</div>
-					@endforeach
-
+				<div class="basket__product" id="basket__product_checkout" basket-items>
 					<div class="basket-finish-price">
-						<p><span class="basket-finish-price-units" cart-items-count>{{Cart::instance('default')->count()}}</span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price>{{Cart::total()}} грн</span></p>
+						<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span> <span class="basket-finish-price-total">грн</span></p>
 					</div>
 					<div class="basket-btn-order">
 						<button type="submit" class="basket-btn-accept">Оформить заказ</button>
@@ -775,7 +659,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/delivery_script.js') }}"></script>
-<script src="{{ asset('js/productsFlow.js') }}"></script>
+<script src="{{ asset('js/testCart.js') }}"></script>
 @if(session('open_cart') == 'open_cart')
 	<script type="text/javascript">
 		(function(){
