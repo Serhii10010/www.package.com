@@ -659,7 +659,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/delivery_script.js') }}"></script>
-<script src="{{ asset('js/testCart.js') }}"></script>
+<script src="{{ asset('js/cart.js') }}"></script>
 @if(session('open_cart') == 'open_cart')
 	<script type="text/javascript">
 		(function(){
