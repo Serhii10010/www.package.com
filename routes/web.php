@@ -27,7 +27,7 @@ Route::group(['prefix' => '{language}', 'where' => ['language' => '[a-z]{2}'], '
   ->name('cart.destroy');
   Route::patch('/cart/{product}', 'App\Http\Controllers\CartController@update')
   ->name('cart.update');
-  Route::get('/cart_info', 'App\Http\Controllers\CartController@getInfo')
+  Route::get('/cartInfo', 'App\Http\Controllers\CartController@cartInfo')
   ->name('cart.info');
 
   Route::post('/checkout', 'App\Http\Controllers\CheckoutController@store')
@@ -41,10 +41,11 @@ Route::group(['prefix' => '{language}', 'where' => ['language' => '[a-z]{2}'], '
   Route::post('/messout', 'App\Http\Controllers\MessageOutController@sendToTelegramAndEmail')
   ->name('messout.sendmessage');
 
-  Route::get('/catalog_info', 'App\Http\Controllers\CatalogController@index')
+  Route::get('/catalog', 'App\Http\Controllers\CatalogController@index')
   ->name('catalog.info');
+  Route::post('/catalog', 'App\Http\Controllers\CatalogController@itemsInfo')
+  ->name('catalog.items.info');
 });
-
 
 Route::group(['prefix' => 'admin'], function () {
     \Voyager::routes();
