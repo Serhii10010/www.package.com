@@ -78,7 +78,7 @@ class CartController extends Controller
       return redirect()->route('main.index', App::getLocale());
      }
 
-     public function getInfo($language) {
+     public function cartInfo($language) {
       return response()->json(
         [
         'success' => true,
