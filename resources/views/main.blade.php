@@ -59,9 +59,7 @@
 			<div class="header__basket">
 				<a id="basket">
 					<img src="img/basket.png" alt="">
-					@if(Cart::instance('default')->count() >= 0)
-						<div class="basket-number" id="basket-number-1" cart-items-count>{{Cart::instance('default')->count()}}</div>
-					@endif
+					<div class="basket-number" id="basket-number-1" cart-items-count></div>
 				</a>
 			</div>
 		</div>
@@ -87,9 +85,7 @@
 				<div class="header__basket">
 					<a id="basket-mobile">
 						<img src="img/basket.png" alt="">
-					@if(Cart::instance('default')->count() >= 0)
-							<div class="basket-number" id="basket-number-2">{{Cart::instance('default')->count()}}</div>
-					@endif
+						<div class="basket-number" id="basket-number-2"></div>
 				</div>
 				</a>
 			</div>
@@ -188,11 +184,7 @@
 								<p class="catalog-availability">{{__('Нет в наличии')}}</p>
 							@endif
 						</div>
-						@if(Cart::content()->where('id', $product->id) != '[]')
-							<div class="catalog-price-add">
-								<a>{{__('Товар в корзине')}}</a>
-							</div>
-						@elseif($product->price != '')
+						@if($product->price != '')
 							@if($product->is_available)
 								<div class="catalog-price">
 									<span>{{ $product->price }} грн</span>

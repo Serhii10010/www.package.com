@@ -7,7 +7,6 @@ use App\Models\Product;
 use App\Models\Portfolio;
 use App\Models\Review;
 use App\Models\Partner;
-use Cart;
 use App;
 
 class LandingPageController extends Controller
@@ -22,15 +21,13 @@ class LandingPageController extends Controller
     $portfolios = Portfolio::inRandomOrder()->get();
     $reviews = Review::inRandomOrder()->get();
     $partners = Partner::inRandomOrder()->get();
-    $cartItems = Cart::content();
 
     return view('main',
     [
       'products' => $products,
       'portfolios' => $portfolios,
       'reviews' => $reviews,
-      'partners' => $partners,
-      'cartItems' => $cartItems
+      'partners' => $partners
     ]);
   }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
-use Cart;
 use App\Models\Customer;
 use App\Mail\SendOrderDetails;
 
@@ -23,14 +22,14 @@ class CheckoutController extends Controller
       return redirect()->route('main.index', app()->getLocale())->with('cart_error', 'cart_error');
     }
     self::addCartItemsToTables($request);
-    Cart::destroy();
     return redirect()->route('main.index', app()->getLocale());
   }
 
   public function addCartItemsToTables(Request $request) {
+    $cart_content = [];
     $two_zeros  = ".00";
     $space = " ";
-    $cart_total = Cart::total();
+    $cart_total = '100000000000000000000000';
     $zeros_pos = stripos($cart_total, $two_zeros);
     $space_pos = stripos($cart_total, $space);
     if ($space_pos !== false){
@@ -52,7 +51,7 @@ class CheckoutController extends Controller
     DB::insert('insert into orders(customer_id, order_type, total_price, delivery_way, delivery_city, delivery_address, additional_info) values ('.$customer_id.', \'order\','.$cart_total.', \''.$request->input('delivery_method').'\', \''.$request->input('delivery_city').'\', \''.$request->input('delivery_address').'\', \''.$request->comment.'\')');
     $order_id = DB::select('select id from orders where customer_id = '.$customer_id);
     foreach ($order_id as $item) {$order_id = $item->id;}
-    foreach (Cart::content() as $item) {
+    foreach ($cart_content as $item) {
       DB::insert('insert into order_details(order_id, product_id, quantity, unit_price) values (\''.$order_id.'\',\''.$item->id.'\',\''.$item->qty.'\',\''.$item->options->unit_price.'\')');
     }
   }
