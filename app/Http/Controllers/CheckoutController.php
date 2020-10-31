@@ -88,9 +88,9 @@ class CheckoutController extends Controller
               'city_name' => $request->delivery_city,
               'warehouse' => $request->delivery_address
             ],
-            'cart_products' => Cart::content(),
-            'total_price' => Cart::total(),
-            'count' => Cart::count(),
+            'cart_products' => $cart_content,
+            'total_price' => $cart_total,
+            'count' => $cart_count,
           ];
 
           // Mail::to(config('mail.from.address', ''))
