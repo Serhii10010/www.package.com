@@ -142,14 +142,13 @@ var shoppingCart = (function() {
 function displayCart() {
   var cartArray = shoppingCart.listCart();
 
-  let locale = window.location['pathname'];
+  let locale = window.location.pathname;
 
   let ids = [];
   for(var i in cartArray) {
     ids[i] = cartArray[i].productId;
   }
 
-  var test = 'lool';
   axios.post(`${locale}/catalog`, {
     ids: ids
   })
@@ -199,6 +198,32 @@ function displayCart() {
   $('div[cart-items-count]').html(shoppingCart.totalCount());
 }
 
+function emptyCart(event) {
+  if (!confirm("Корзина будет очищена! Продолжить?")) {
+    event.preventDefault();
+  } else {
+    if(event.handleObj.selector === 'a[locale-ru]'){
+      clearAllCartItems();
+      window.location.href = 'http://www.package.com/ru';
+    } else if(event.handleObj.selector === 'a[locale-ua]') {
+      clearAllCartItems();
+      window.location.href = 'http://www.package.com/ua';
+    }
+  }
+}
+
+function clearAllCartItems () {
+  shoppingCart.clearCart();
+  $('[cart-item]').remove();
+  $('button[catalog-item-order]').parent().css('display', 'flex');
+  $('a[catalog-item-in-cart]').parent().css('display', 'none');
+
+  displayCart();
+}
+
+
+$("div[locale=\'ua\']").on("click", "a[locale-ru]", emptyCart);
+$("div[locale=\'ru\']").on("click", "a[locale-ua]", emptyCart);
 
 const basketProduct = document.querySelector("#basket__product");
 const basketProductCheckout = document.querySelector("#basket__product_checkout");
@@ -220,12 +245,7 @@ $("button[catalog-item-order]").click(function () {
 
 // Clear items
 $('button[clear-cart]').click(function() {
-  shoppingCart.clearCart();
-  $('[cart-item]').remove();
-  $('button[catalog-item-order]').parent().css('display', 'flex');
-  $('a[catalog-item-in-cart]').parent().css('display', 'none');
-
-  displayCart();
+  clearAllCartItems();
 });
 
 // Delete item button

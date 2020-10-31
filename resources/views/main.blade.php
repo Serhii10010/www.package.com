@@ -31,16 +31,16 @@
 				<a href="#"><img src="img/instagram.png"></a>
 				<a href="#"><img src="img/viber.png"></a>
 			</div>
-			<div class="header__language">
-				<p><a href="{{ route('cart.empty', 'ru') }}" id="header__language-a-rus">
+			<div class="header__language" locale=@if (app()->getLocale() == 'ru') "ru" @else "ua" @endif>
+				<p><a locale-ru>
 						@if(app()->getLocale() == 'ru')
-							<span locale="ru" value="ru">Рус</span>
+							<span>Рус</span>
 						@else
 							Рус
 						@endif
-					</a> | <a href="{{ route('cart.empty', 'ua') }}" id="header__language-a-ukr">
+					</a> | <a locale-ua>
 						@if(app()->getLocale() == 'ua')
-							<span locale="ua" value="ua">Укр</span>
+							<span>Укр</span>
 						@else
 							Укр
 						@endif

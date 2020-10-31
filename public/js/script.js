@@ -106,25 +106,14 @@ $('.cooperation-slider').slick({
   ]
 });
 
-var basketOpenMobile = document.querySelector("#basket-mobile");
-
-basketOpenMobile.addEventListener("click", openBasketPopup);
-
-var closeBtn = document.querySelectorAll(".close"),
+var basketOpenMobile = document.querySelector("#basket-mobile"),
+    closeBtn = document.querySelectorAll(".close"),
     openBasketBtn = document.querySelector("#basket"),
     popupBasket = document.querySelector("#popup__basket"),
     basketBtnReturn = document.querySelector("#basket-btn-return"),
     basketOrder = document.querySelector("#basket__order"),
-    basketBtnContinue = document.querySelector("#basket-btn-continue"),
     popupSmall = document.querySelector("#popup"),
-    popupEmptyCart = document.querySelector("#popup-empty-cart"),
-    headerLanguageRu = document.querySelector("#header__language-a-rus"),
-    headerLanguageUk = document.querySelector("#header__language-a-ukr"),
-    basketContainer = document.querySelectorAll(".basket__product-container"),
-    additionalPriceAll = document.querySelectorAll('.catalog-price-additional'),
-    cartProductAll = document.querySelectorAll(".catalog-price-add"),
     catalogPrice = document.querySelectorAll(".catalog-price"),
-    catalogPriceAdditional = document.querySelectorAll(".catalog-price-add-additional"),
     popupMistake = document.querySelector("#popup-mistake"),
     closeMistakePopup = document.querySelector("#close-mistake");
 
@@ -134,10 +123,19 @@ document.body.addEventListener('click', e => {
   }
 });
 
+Array.from(closeBtn).forEach(function (element) {
+  element.addEventListener("click", function() {
+    popupBasket.style.display = "none";
+    popupSmall.style.display = "none";
+    basketOrder.style.display = "none";
+    popupMistake.style.display = "none";
+  });
+});
+
 openBasketBtn.addEventListener("click", openBasketPopup);
 basketBtnReturn.addEventListener("click", closePopup);
-headerLanguageRu.addEventListener("click", emptyCart);
-headerLanguageUk.addEventListener("click", emptyCart);
+closeMistakePopup.addEventListener("click", mistakePopupClose);
+basketOpenMobile.addEventListener("click", openBasketPopup);
 
 $("body").on('click', '[href*="#"]', function(e){
   var fixed_offset = 100;
@@ -162,12 +160,6 @@ function openBasketOrderPopup() {
   popupBasket.style.display = "none";
 }
 
-function emptyCart(event) {
-  if (!confirm("Корзина будет очищена! Продолжить?")) {
-    event.preventDefault();
-  }
-}
-
 function updateNavs(slide) {
   $navInners.width(`${$navs.width() * (slide + 1) / slidesCounts}px`);
 }
@@ -176,19 +168,7 @@ function updateNav(slide) {
   $navInner.width(`${$nav.width() * (slide + 4) / slidesCount}px`);
 }
 
-
-Array.from(closeBtn).forEach(function (element) {
-  element.addEventListener("click", function() {
-    popupBasket.style.display = "none";
-    popupSmall.style.display = "none";
-    basketOrder.style.display = "none";
-    popupMistake.style.display = "none";
-  });
-});
-
 function mistakePopupClose () {
   popupMistake.style.display = "none";
   popupBasket.style.display = "block";
 }
-
-closeMistakePopup.addEventListener("click", mistakePopupClose);
