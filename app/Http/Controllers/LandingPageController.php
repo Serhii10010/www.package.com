@@ -7,13 +7,11 @@ use App\Models\Product;
 use App\Models\Portfolio;
 use App\Models\Review;
 use App\Models\Partner;
-use App;
 
 class LandingPageController extends Controller
 {
-  public function index()
-  {
-    if(App::getLocale() == 'ua'){
+  public function index() {
+    if(\App::getLocale() == 'ua'){
       $products = Product::where('language', 'ua')->get();
     } else {
       $products = Product::where('language','ru')->get();

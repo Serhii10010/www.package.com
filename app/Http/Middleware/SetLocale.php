@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Cart;
 use Illuminate\Http\Request;
 
-class SetLanguage
+class SetLocale
 {
     /**
      * Handle an incoming request.
@@ -17,8 +16,8 @@ class SetLanguage
      */
     public function handle(Request $request, Closure $next)
     {
-      \App::setLocale($request->language);
-      Cart::destroy();
-
-      return $next($request);    }
+        \App::setLocale($request->language);
+        
+        return $next($request);
+    }
 }
