@@ -18,18 +18,18 @@
 			</div>
 			<div class="header__contact">
 				<div class="header__contact-tell">
-					<a href="tel:"><img src="img/vector-phone.png">+38 066 666 6666</a>
+					<a href="tel:"><img src="images/vector-phone.png">+38 066 666 6666</a>
 					<a href="tel:">+38 066 666 6666</a>
 				</div>
 				<div class="header__contact-address">
-					<p><img src="img/address-vector.png">{{__('г. Киев ул. Майдан независимости, 15А')}}</p>
+					<p><img src="images/address-vector.png">{{__('г. Киев ул. Майдан независимости, 15А')}}</p>
 				</div>
 			</div>
 			<div class="header__social">
-				<a href="#"><img src="img/youtube.png"></a>
-				<a href="#"><img src="img/facebook.png"></a>
-				<a href="#"><img src="img/instagram.png"></a>
-				<a href="#"><img src="img/viber.png"></a>
+				<a href="#"><img src="images/youtube.png"></a>
+				<a href="#"><img src="images/facebook.png"></a>
+				<a href="#"><img src="images/instagram.png"></a>
+				<a href="#"><img src="images/viber.png"></a>
 			</div>
 			<div class="header__language" locale=@if (app()->getLocale() == 'ru') "ru" @else "ua" @endif>
 				<p><a locale-ru>
@@ -58,7 +58,7 @@
 			</ul>
 			<div class="header__basket">
 				<a id="basket">
-					<img src="img/basket.png" alt="">
+					<img src="images/basket.png" alt="">
 					<div class="basket-number" id="basket-number-1" cart-items-count></div>
 				</a>
 			</div>
@@ -84,7 +84,7 @@
 				</div>
 				<div class="header__basket">
 					<a id="basket-mobile">
-						<img src="img/basket.png" alt="">
+						<img src="images/basket.png" alt="">
 						<div class="basket-number" id="basket-number-2"></div>
 				</div>
 				</a>
@@ -101,7 +101,7 @@
 				<a class="order__title-btn" href="#catalog">{{__('Заказать сейчас')}}</a>
 			</div>
 			<div class="order__img">
-				<img src="img/bg-1-road.png">
+				<img src="images/bg-1-road.png">
 			</div>
 		</div>
 	</div>
@@ -117,22 +117,22 @@
 															<br>К примеру, пакет с логотипом станет отличным подарком владельцу машины от СТО, магазина автозапчастей, или автосалона. Это напомнит клиенту о качественном обслуживании, и он обязательно к вам вернется.</p>
 				<div class="about__items">
 					<div class="about__item">
-						<img src="img/about-shopping.png" alt="">
+						<img src="images/about-shopping.png" alt="">
 						<p>lorem ipsum</p>
 					</div>
 					<span></span>
 					<div class="about__item">
-						<img src="img/about-around.png" alt="">
+						<img src="images/about-around.png" alt="">
 						<p>lorem ipsum</p>
 					</div>
 					<span></span>
 					<div class="about__item">
-						<img src="img/about-award.png" alt="">
+						<img src="images/about-award.png" alt="">
 						<p>lorem ipsum</p>
 					</div>
 					<span></span>
 					<div class="about__item">
-						<img src="img/about-cash.png" alt="">
+						<img src="images/about-cash.png" alt="">
 						<p>lorem ipsum</p>
 					</div>
 				</div>
@@ -220,7 +220,7 @@
 						<span>Тираж от <span class="bold">3 000 шт</span></span>
 					</div>
 					<div class="print__desc-img">
-						<img src="img/print.png" alt="">
+						<img src="images/print.png" alt="">
 					</div>
 				</div>
 				<div class="print__portfolio">
@@ -229,18 +229,18 @@
 						@foreach ($portfolios as $portfolio)
 							{{-- <div class="print__portfolio-slider-slide-content"><img src="{{ asset('storage/'.$portfolio->image) }}"></div> --}}
 						@endforeach
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
-						<div class="print__portfolio-slider-slide-content"><img src="img/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
+						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
 					</div>
 					<div class="print__portfolio-nav">
 						<div class="print__portfolio-nav-inner"></div>
@@ -249,7 +249,7 @@
 				<div class="print__order">
 					<p class="print__order-title">Закажите печать на пакеты</p>
 					<p class="print__order-subtitle">Мы перезвоним Вам в течение 15 минут</p>
-					<form method="POST" action="{{ route('messout.sendmessage', app()->getLocale()) }}">
+					<form method="POST">
 						{{ csrf_field() }}
 						<input type="hidden" name="message_theme" value="PRINT">
 						<div class="print__order-form-input">
@@ -275,7 +275,7 @@
 				<p class="wholesale__text-subtitle">У нас гибкая система скидок для диллеров и магазинов</p>
 			</div>
 			<div class="wholesale__form">
-				<form method="POST" action="{{ route('messout.sendmessage', app()->getLocale()) }}">
+				<form method="POST">
 					{{ csrf_field() }}
 					<input type="hidden" name="message_theme" value="OPT_PARTNER">
 					<input type="text" name="name" value="" placeholder="Имя" class="wholesale__form-input-name" required>
@@ -309,7 +309,7 @@
 						<p class="benefits__items-desc">lorem ipsum</p>
 					</div>
 				</div>
-				<img src="img/benefit.png">
+				<img src="images/benefit.png">
 				<div class="benefits-item">
 					<div>
 						<p class="benefits__items-desc">lorem ipsum</p>
@@ -346,7 +346,7 @@
 				@endforeach
 				<div class="review-slider-slide-content">
 					<div class="review-slider-slide-content-top">
-						<img src="img/avatar.png">
+						<img src="images/avatar.png">
 						<p class="review-slider-slide-content-name">lorem ipsum</p>
 					</div>
 					<div>
@@ -355,7 +355,7 @@
 				</div>
 				<div class="review-slider-slide-content">
 					<div class="review-slider-slide-content-top">
-						<img src="img/avatar.png">
+						<img src="images/avatar.png">
 						<p class="review-slider-slide-content-name">lorem ipsum</p>
 					</div>
 					<div>
@@ -364,7 +364,7 @@
 				</div>
 				<div class="review-slider-slide-content">
 					<div class="review-slider-slide-content-top">
-						<img src="img/avatar.png">
+						<img src="images/avatar.png">
 						<p class="review-slider-slide-content-name">lorem ipsum</p>
 					</div>
 					<div>
@@ -373,7 +373,7 @@
 				</div>
 				<div class="review-slider-slide-content">
 					<div class="review-slider-slide-content-top">
-						<img src="img/avatar.png">
+						<img src="images/avatar.png">
 						<p class="review-slider-slide-content-name">lorem ipsum</p>
 					</div>
 					<div>
@@ -398,28 +398,28 @@
 					</div>
 				@endforeach
 				<div>
-					<img src="img/malte.png">
+					<img src="images/malte.png">
 				</div>
 				<div>
-					<img src="img/malte.png">
+					<img src="images/malte.png">
 				</div>
 				<div>
-					<img src="img/malte.png">
+					<img src="images/malte.png">
 				</div>
 				<div>
-					<img src="img/malte.png">
+					<img src="images/malte.png">
 				</div>
 				<div>
-					<img src="img/malte.png">
+					<img src="images/malte.png">
 				</div>
 				<div>
-					<img src="img/malte.png">
+					<img src="images/malte.png">
 				</div>
 				<div>
-					<img src="img/malte.png">
+					<img src="images/malte.png">
 				</div>
 				<div>
-					<img src="img/malte.png">
+					<img src="images/malte.png">
 				</div>
 			</div>
 		</div>
@@ -433,23 +433,23 @@
 				<p class="footer-contact-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a</p>
 				<div class="footer-contacts">
 					<div class="footer-contacts-tell">
-						<a href="tel:"><img src="img/vector-phone.png">+38 066 666 6666</a>
-						<a href="tel:"><img src="img/vector-phone.png">+38 066 666 6666</a>
-						<a href="mail:"><img src="img/email.png">paketi@gmail.com</a>
+						<a href="tel:"><img src="images/vector-phone.png">+38 066 666 6666</a>
+						<a href="tel:"><img src="images/vector-phone.png">+38 066 666 6666</a>
+						<a href="mail:"><img src="images/email.png">paketi@gmail.com</a>
 					</div>
 					<div class="footer-contacts-address">
-						<p class="footer-contacts-address-p"><img src="img/address-vector.png">г. Киев ул. Майдан<br> независимости, 15 А</p>
+						<p class="footer-contacts-address-p"><img src="images/address-vector.png">г. Киев ул. Майдан<br> независимости, 15 А</p>
 						<div class="footer-social">
-							<a href="#"><img src="img/youtube.png"></a>
-							<a href="#"><img src="img/facebook.png"></a>
-							<a href="#"><img src="img/instagram.png"></a>
-							<a href="#"><img src="img/viber.png"></a>
+							<a href="#"><img src="images/youtube.png"></a>
+							<a href="#"><img src="images/facebook.png"></a>
+							<a href="#"><img src="images/instagram.png"></a>
+							<a href="#"><img src="images/viber.png"></a>
 						</div>
 					</div>
 				</div>
 
 				<div class="footer-form">
-					<form method="POST" action="{{ route('messout.sendmessage', app()->getLocale()) }}">
+					<form method="POST">
 						{{ csrf_field() }}
 						<input type="hidden" name="message_theme" value="QUESTIONS">
 						<div class="footer-form-input">
@@ -465,7 +465,7 @@
 				</div>
 			</div>
 			<div class="footer-card">
-				<img src="img/card.png">
+				<img src="images/card.png">
 			</div>
 		</div>
 	</div>
@@ -489,7 +489,7 @@
 					<div class="basket__product-desc name">
 						<p class="basket__product-desc-title" cart-item-name></p>
 						<div class="basket__img">
-							<img src="img/78927403_pakety-dlya-shin_5.png" cart-item-image>
+							<img src="images/78927403_pakety-dlya-shin_5.png" cart-item-image>
 						</div>
 							<p class="basket__product-desc-min" cart-item-min-order-qty>
 								Минимальный заказ 200 шт
@@ -522,9 +522,9 @@
 					<div class="basket__product-desc price" cart-item-price></div>
 					<div class="basket__product-desc number">
 						<div class="quantity-block">
-							<a class="quantity-arrow-minus minus" cart-item-minus cart-item-change-quantity><img src="img/minus.png"></a>
+							<a class="quantity-arrow-minus minus" cart-item-minus cart-item-change-quantity><img src="images/minus.png"></a>
 							<input class="quantity-num" type="number" value="" min="1" cart-item-quantity/>
-							<a class="quantity-arrow-plus plus" cart-item-plus cart-item-change-quantity><img src="img/plus.png"></a>
+							<a class="quantity-arrow-plus plus" cart-item-plus cart-item-change-quantity><img src="images/plus.png"></a>
 						</div>
 					</div>
 					<div class="basket__product-desc units">шт.</div>
@@ -536,7 +536,7 @@
 				</div>
 				<div class="basket-btn">
 					<div>
-						<form class="" action="{{ route('checkout.index', app()->getLocale()) }}" method="get">
+						<form method="get">
 							<button class="basket-btn-continue" id="basket-btn-continue">Оформить заказ</button>
 						</form>
 						<button class="basket-btn-return" id="basket-btn-return">Продолжить покупки</button>
@@ -553,7 +553,7 @@
 	<div class="basket__order-content">
 		<a class="close" id="close-order">X</a>
 		<p class="basket__order-title">Оформление заказа</p>
-		<form action="{{ route('checkout.store', app()->getLocale()) }}" method="post">
+		<form method="post">
 			{{ csrf_field() }}
 			<div class="basket__order-form">
 				<div class="basket__order-data-recipient">
@@ -622,7 +622,7 @@
 			<a class="close" id="close-popup">X</a>
 			<p class="popup__title">Отправте заявку</p>
 			<p class="popup__subtitle">и мы свяжемся с Вами в течении 30 минут</p>
-			<form action="{{ route('messout.sendmessage', app()->getLocale()) }}" method="post">
+			<form method="post">
 				{{ csrf_field() }}
 				<input type="hidden" name="message_theme" value="PRICE_QUESTION">
 				<input type="text" name="name" value="" placeholder="Имя" class="basket__order-input-name" required>
@@ -649,8 +649,9 @@
 
 <script src="{{ asset('slick/slick.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script src="{{ asset('js/slick.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
-<script src="{{ asset('js/delivery_script.js') }}"></script>
+<script src="{{ asset('js/delivery.js') }}"></script>
 <script src="{{ asset('js/cart.js') }}"></script>
 @if(session('open_cart') == 'open_cart')
 	<script type="text/javascript">
