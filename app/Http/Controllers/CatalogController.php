@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class CatalogController extends Controller
 {
-  public function itemsInfo(Request $request, $language) {
+  public function itemsInfo(Request $request, $locale) {
     $ids =  $request->ids;
     if ($ids != []) {
       foreach ($ids as $id) {
