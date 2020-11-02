@@ -536,13 +536,11 @@
 				</div>
 				<div class="basket-btn">
 					<div>
-						<form method="get">
-							<button class="basket-btn-continue" id="basket-btn-continue">Оформить заказ</button>
-						</form>
+						<button class="basket-btn-continue cart-prepare-order" id="basket-btn-continue" cart-prepare-order>Оформить заказ</button>
 						<button class="basket-btn-return" id="basket-btn-return">Продолжить покупки</button>
 					</div>
 					<div>
-						<button class="basket-btn-continue" id="basket-btn-continue" clear-cart>Очистить корзину</button>
+						<button class="basket-btn-continue cart-clear" clear-cart>Очистить корзину</button>
 					</div>
 				</div>
 			</div>
@@ -553,7 +551,7 @@
 	<div class="basket__order-content">
 		<a class="close" id="close-order">X</a>
 		<p class="basket__order-title">Оформление заказа</p>
-		<form method="post">
+		<form method="post" action="http://www.package.com/{{app()->getLocale()}}/checkout">
 			{{ csrf_field() }}
 			<div class="basket__order-form">
 				<div class="basket__order-data-recipient">
@@ -562,10 +560,9 @@
 						<input type="hidden" name="message_theme" value="ORDER_MAIN">
 						<input type="text" name="name" value="" placeholder="Имя" class="basket__order-input-name" required>
 						<input type="text" name="surname" value="" placeholder="Фамилия" class="basket__order-input-name" required>
-						<input type="text" name="patronimic" value="" placeholder="Отчество" class="basket__order-input-name" required>
-						<input type="tel" name="tel" value="" placeholder="+7 ( _ _ _ )  _ _ _   _ _ _ _" class="basket__order-input-phone phone" required>
+						<input type="tel" name="tel" value="" placeholder="+ 38 ( _ _ _ )  _ _  _ _  _ _ _" class="basket__order-input-phone phone" required>
 						<label class="sales">Не пропустите выгодные предложения</label>
-						<input type="email" name="email" value="" placeholder="E-mail" class="basket__order-input-email" required>
+						<input type="email" name="email" value="" placeholder="E-mail" class="basket__order-input-email">
 						<p class="news">Узнавайте первым про  акции, скидки и спецпредложения</p>
 					</div>
 				</div>
@@ -608,12 +605,17 @@
 						<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span> <span class="basket-finish-price-total">грн</span></p>
 					</div>
 					<div class="basket-btn-order">
-						<button type="submit" class="basket-btn-accept">Оформить заказ</button>
+						<button class="basket-btn-accept" cart-do-order>Оформить заказ</button>
 						<p>Подтверждая заказ вы соглашаетесь с <a href="">политикой конфиденциальности</a></p>
 					</div>
 				</div>
 			</div>
 		</form>
+		<div class="basket-btn">
+			<div>
+				<button class="basket-btn-return btn-none" cart-return-to-catalog>Выбрать товары</button>
+			</div>
+		</div>
 	</div>
 </section>
 <section id="popup">
@@ -626,7 +628,7 @@
 				{{ csrf_field() }}
 				<input type="hidden" name="message_theme" value="PRICE_QUESTION">
 				<input type="text" name="name" value="" placeholder="Имя" class="basket__order-input-name" required>
-				<input type="tel" name="tel" value="" placeholder="+7 ( _ _ _ )  _ _ _   _ _ _ _" class="basket__order-input-phone phone" required>
+				<input type="tel" name="tel" value="" placeholder="+ 38 ( _ _ _ )  _ _  _ _  _ _ _" class="basket__order-input-phone phone" required>
 				<button type="submit">Свяжитесь с нами</button>
 			</form>
 		</div>
@@ -653,7 +655,7 @@
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/delivery.js') }}"></script>
 <script src="{{ asset('js/cart.js') }}"></script>
-@if(session('open_cart') == 'open_cart')
+@if(session('order_open') == 'order_open')
 	<script type="text/javascript">
 		(function(){
 			document.querySelector("#basket__order").style.display = "block";
