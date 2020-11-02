@@ -149,50 +149,64 @@ function displayCart() {
     ids[i] = cartArray[i].productId;
   }
 
-  axios.post(`${locale}/catalog`, {
-    ids: ids
-  })
-  .then(function (response) {
-    for(var i in response['data']){
-      let item = response.data[i][0];
-      let cartItemNew = document.querySelector('div[cart-item-new]').cloneNode(true);
+  if(cartArray.length != 0){
+    axios.post(`${locale}/catalog`, {
+      ids: ids
+    })
+    .then(function (response) {
+      for(var i in response['data']){
+        let item = response.data[i][0];
+        let cartItemNew = document.querySelector('div[cart-item-new]').cloneNode(true);
 
-      let itemTotal;
-      let itemCount;
-      for(let i in cartArray){
-        if(cartArray[i].productId == item.id) {
-          itemTotal = cartArray[i].total;
-          itemCount = cartArray[i].count;
-          break;
+        let itemTotal;
+        let itemCount;
+        for(let i in cartArray){
+          if(cartArray[i].productId == item.id) {
+            itemTotal = cartArray[i].total;
+            itemCount = cartArray[i].count;
+            break;
+          }
         }
+
+        cartItemNew.removeAttribute('cart-item-new');
+        cartItemNew.setAttribute('cart-item', null);
+        cartItemNew.setAttribute('product-id', item.id);
+
+        cartItemNew.querySelector('p[cart-item-name]').innerHTML = item.name;
+        cartItemNew.querySelector('img[cart-item-image]').setAttribute('src', 'http://www.package.com/storage/' + item.image);
+        cartItemNew.querySelector('p[cart-item-min-order-qty]').innerHTML = "Минимальный заказ 200";
+        cartItemNew.querySelector('td[cart-item-size]').innerHTML = item.size;
+        cartItemNew.querySelector('td[cart-item-wheel-radius]').innerHTML = item.wheel_radius;
+        cartItemNew.querySelector('td[cart-item-packaging]').innerHTML = item.packaging;
+        cartItemNew.querySelector('td[cart-item-color]').innerHTML = item.color;
+        cartItemNew.querySelector('input[cart-item-quantity]').value = itemCount;
+        cartItemNew.querySelector('td[cart-item-material]').innerHTML = item.material;
+        cartItemNew.querySelector('div[cart-item-price]').innerHTML = item.price;
+        cartItemNew.querySelector('div[cart-item-subtotal]').innerHTML = parseFloat(itemTotal).toFixed(2);
+        cartItemNew.style.display = 'flex';
+
+        //adding new html elements to cart
+        basketProduct.prepend(cartItemNew);
+        let basketChechout = cartItemNew.cloneNode(true);
+        basketProductCheckout.prepend(basketChechout);
       }
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
 
-      cartItemNew.removeAttribute('cart-item-new');
-      cartItemNew.setAttribute('cart-item', null);
-      cartItemNew.setAttribute('product-id', item.id);
+    $('button[clear-cart]').css('display', 'flex');
+    $('button[cart-prepare-order]').css('display', 'flex');
+    $('button[cart-do-order]').css('display', 'block');
+  }
+  else {
+    $('button[clear-cart]').css('display', 'none');
+    $('button[cart-prepare-order]').css('display', 'none');
+    $('button[cart-do-order]').css('display', 'none');
 
-      cartItemNew.querySelector('p[cart-item-name]').innerHTML = item.name;
-      cartItemNew.querySelector('img[cart-item-image]').setAttribute('src', 'http://www.package.com/storage/' + item.image);
-      cartItemNew.querySelector('p[cart-item-min-order-qty]').innerHTML = "Минимальный заказ 200";
-      cartItemNew.querySelector('td[cart-item-size]').innerHTML = item.size;
-      cartItemNew.querySelector('td[cart-item-wheel-radius]').innerHTML = item.wheel_radius;
-      cartItemNew.querySelector('td[cart-item-packaging]').innerHTML = item.packaging;
-      cartItemNew.querySelector('td[cart-item-color]').innerHTML = item.color;
-      cartItemNew.querySelector('input[cart-item-quantity]').value = itemCount;
-      cartItemNew.querySelector('td[cart-item-material]').innerHTML = item.material;
-      cartItemNew.querySelector('div[cart-item-price]').innerHTML = item.price;
-      cartItemNew.querySelector('div[cart-item-subtotal]').innerHTML = parseFloat(itemTotal).toFixed(2);
-      cartItemNew.style.display = 'flex';
+    $('button[cart-return-to-catalog]').css('display', 'flex');
+  }
 
-      //adding new html elements to cart
-      basketProduct.prepend(cartItemNew);
-      let basketChechout = cartItemNew.cloneNode(true);
-      basketProductCheckout.prepend(basketChechout);
-    }
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
   $('span[cart-total-price]').html(shoppingCart.totalCart());
   $('.basket-finish-price-units').html(shoppingCart.totalCount());
   $('div[cart-items-count]').html(shoppingCart.totalCount());
@@ -221,9 +235,41 @@ function clearAllCartItems () {
   displayCart();
 }
 
+function prepareOrder() {
+  let locale = window.location.pathname;
+  window.location.href = `http://www.package.com${locale}/checkout`;
+}
+
+function doOrder() {
+  let locale = window.location.pathname;
+  // console.log('lol');
+  axios.post(`${locale}/checkout`, {
+    cart: shoppingCart.listCart()
+  })
+  .then(function (response) {
+    console.log(response);
+    alert('lol');
+    event.preventDefault();
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
 
 $("div[locale=\'ua\']").on("click", "a[locale-ru]", emptyCart);
 $("div[locale=\'ru\']").on("click", "a[locale-ua]", emptyCart);
+
+$("button[cart-prepare-order]").click(function () {
+  if (shoppingCart.listCart() != []) {
+    prepareOrder();
+  }
+});
+
+$("button[cart-do-order]").click(function () {
+  if (shoppingCart.listCart() != []) {
+    doOrder();
+  }
+});
 
 const basketProduct = document.querySelector("#basket__product");
 const basketProductCheckout = document.querySelector("#basket__product_checkout");
@@ -236,11 +282,12 @@ $("button[catalog-item-order]").click(function () {
 
   shoppingCart.addItemToCart(productId, price, 1);
   $('[cart-item]').remove();
-  displayCart();
 
   $(this).parent().css('display', 'none');
   let productInCart = $(this).parent().parent().children()[2];
   productInCart.style.display = 'flex';
+
+  displayCart();
 });
 
 // Clear items
@@ -279,6 +326,7 @@ $('div[basket-items]').on("click", "a[cart-item-minus]", function () {
 
   shoppingCart.removeItemFromCart(productId);
   $('[cart-item]').remove();
+
   displayCart();
 });
 
@@ -287,6 +335,7 @@ $('div[basket-items]').on("click", "a[cart-item-plus]", function () {
   var productId = $(this).parent().parent().parent().attr("product-id");
   shoppingCart.addItemToCart(productId);
   $('[cart-item]').remove();
+
   displayCart();
 });
 

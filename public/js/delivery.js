@@ -35,7 +35,7 @@ function delivery() {
           "content-type": "application/json",
         },
         "processData": false,
-        "data": "{\"apiKey\": \"9a6f81fd8f227cffd460c0392c6ad027\", \"modelName\": \"Address\",\"calledMethod\": \"getAreas\"}"
+        "data": "{\"apiKey\": \"0768ba96d33e597f02eee417ff2538a9\", \"modelName\": \"Address\",\"calledMethod\": \"getAreas\"}"
       }
 
       $.ajax(settings).done(function (response) {
@@ -94,7 +94,7 @@ function delivery() {
           "content-type": "application/json",
         },
         "processData": false,
-        "data": "{\"apiKey\": \"9a6f81fd8f227cffd460c0392c6ad027\", \"modelName\": \"AddressGeneral\",\"calledMethod\": \"getWarehouses\", \"methodProperties\":{\"CityRef\" : \"" + CityRef + "\"}}"
+        "data": "{\"apiKey\": \"0768ba96d33e597f02eee417ff2538a9\", \"modelName\": \"AddressGeneral\",\"calledMethod\": \"getWarehouses\", \"methodProperties\":{\"CityRef\" : \"" + CityRef + "\"}}"
       }
 
       $.ajax(settings).done(function (response) {
@@ -115,7 +115,7 @@ function delivery() {
           "content-type": "application/json",
         },
         "processData": false,
-        "data": "{\"apiKey\": \"9a6f81fd8f227cffd460c0392c6ad027\", \"modelName\": \"Address\",\"calledMethod\": \"getCities\"}"
+        "data": "{\"apiKey\": \"0768ba96d33e597f02eee417ff2538a9\", \"modelName\": \"Address\",\"calledMethod\": \"getCities\"}"
       }
 
       $.ajax(settings).done(function (response) {

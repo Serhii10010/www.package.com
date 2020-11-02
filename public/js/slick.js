@@ -18,8 +18,8 @@ $('.print__portfolio-slider').on({
   infinite: true,
   slidesToShow: 4,
   slidesToScroll: 4,
-  prevArrow: '<img src="img/Component 18.png" class="slick-btn slider-left">',
-  nextArrow: '<img src="img/Component_19.png" class="slick-btn slider-right">',
+  prevArrow: '<img src="images/Component 18.png" class="slick-btn slider-left">',
+  nextArrow: '<img src="images/Component_19.png" class="slick-btn slider-right">',
   responsive: [
     {
       breakpoint: 825,
@@ -61,8 +61,8 @@ $('.review-slider').on({
   infinite: true,
   slidesToShow: 3,
   slidesToScroll: 1,
-  prevArrow: '<img src="img/Component 18.png" class="slick-btn slider-left">',
-  nextArrow: '<img src="img/Component_19.png" class="slick-btn slider-right">',
+  prevArrow: '<img src="images/Component 18.png" class="slick-btn slider-left">',
+  nextArrow: '<img src="images/Component_19.png" class="slick-btn slider-right">',
   responsive: [
     {
       breakpoint: 825,
@@ -86,8 +86,8 @@ $('.cooperation-slider').slick({
   infinite: true,
   slidesToShow: 4,
   slidesToScroll: 1,
-  prevArrow: '<img src="img/Component 18.png" class="slick-btn slider-left cooperation-btn">',
-  nextArrow: '<img src="img/Component_19.png" class="slick-btn slider-right cooperation-btn">',
+  prevArrow: '<img src="images/Component 18.png" class="slick-btn slider-left cooperation-btn">',
+  nextArrow: '<img src="images/Component_19.png" class="slick-btn slider-right cooperation-btn">',
   responsive: [
     {
       breakpoint: 825,

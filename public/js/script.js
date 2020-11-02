@@ -2,13 +2,13 @@ var basketOpenMobile = document.querySelector("#basket-mobile"),
     closeBtn = document.querySelectorAll(".close"),
     openBasketBtn = document.querySelector("#basket"),
     popupBasket = document.querySelector("#popup__basket"),
-    basketBtnReturn = document.querySelector("#basket-btn-return"),
     basketOrder = document.querySelector("#basket__order"),
+    basketBtnReturn = document.querySelector("#basket-btn-return"),
     popupSmall = document.querySelector("#popup"),
     catalogPrice = document.querySelectorAll(".catalog-price"),
     popupMistake = document.querySelector("#popup-mistake"),
-    closeMistakePopup = document.querySelector("#close-mistake");
-
+    closeMistakePopup = document.querySelector("#close-mistake"),
+    btnReturnCatalog = document.querySelector("button[cart-return-to-catalog]");
 
     document.body.addEventListener('click', e => {
       if (e.target.classList.contains('catalog-price-check-btn')) {
@@ -29,6 +29,7 @@ var basketOpenMobile = document.querySelector("#basket-mobile"),
     basketBtnReturn.addEventListener("click", closePopup);
     closeMistakePopup.addEventListener("click", mistakePopupClose);
     basketOpenMobile.addEventListener("click", openBasketPopup);
+    btnReturnCatalog.addEventListener("click", closeOrder);
 
 
     $(function() {
@@ -51,4 +52,8 @@ var basketOpenMobile = document.querySelector("#basket-mobile"),
     function mistakePopupClose () {
       popupMistake.style.display = "none";
       popupBasket.style.display = "block";
+    }
+
+    function closeOrder(){
+      basketOrder.style.display = "none";
     }
