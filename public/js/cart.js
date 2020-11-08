@@ -240,16 +240,18 @@ function prepareOrder() {
   window.location.href = `http://www.package.com${locale}/checkout`;
 }
 
-function doOrder() {
+function sendOrderErrorMessage(message){
+  $("[message-error]").html(message);
+}
+
+function doOrder(form) {
   let locale = window.location.pathname;
-  // console.log('lol');
   axios.post(`${locale}/checkout`, {
-    cart: shoppingCart.listCart()
+    cart: shoppingCart.listCart(),
+    form: form
   })
   .then(function (response) {
     console.log(response);
-    alert('lol');
-    event.preventDefault();
   })
   .catch(function (error) {
     console.log(error);
@@ -267,7 +269,52 @@ $("button[cart-prepare-order]").click(function () {
 
 $("button[cart-do-order]").click(function () {
   if (shoppingCart.listCart() != []) {
-    doOrder();
+    event.preventDefault();
+    let locale = window.location.pathname;
+
+    let form = $(this).parent().parent().parent().parent('form[order-form]');
+
+    let name = form.find('input[order-customer-name]').val();
+    let surname = form.find('input[order-customer-surname]').val();
+    let phone = form.find('input[order-customer-phone]').val();
+    let email = form.find('input[order-customer-email]').val();
+
+    let comment = form.find('select[order-comment]').val();
+
+    let delivery_way = form.find('select[order-delivery-way]').val();
+    let area = form.find('select[order-area]').val();
+    let city = form.find('select[order-city]').val();
+    let address = form.find('select[order-warehouse]').val();
+
+    let message = "success";
+
+    if (name == '') {message = (locale == '/ru') ? 'Поле Имя должно быть заполненым!' : 'Поле Ім\'я має бути заповнене!';}
+    else if (surname == '') {message = (locale == '/ru') ? 'surname' : 'surname';}
+    else if (phone == '') {message = (locale == '/ru') ? 'phone' : 'phone';}
+    else if (email == '') {message = (locale == '/ru') ? 'email' : 'email';}
+    else if (delivery_way == null) {message = (locale == '/ru') ? 'delivery_way' : 'delivery_way';}
+    else if (area == "null" || area == null || area == "Выберите область") {message = (locale == '/ru') ? 'area' : 'area';}
+    else if (city == 'null' || city == null || city == "Выберите город") {message = (locale == '/ru') ? 'city' : 'city';}
+    else if (address == 'null' || address == null || address == 'Выберите отделение') {message = (locale == '/ru') ? 'address' : 'address';}
+
+    if (message == "success"){
+
+      let form = {
+        name: name,
+        surname: surname,
+        phone: phone,
+        email: email,
+        delivery_way: delivery_way,
+        area: area,
+        city: city,
+        address: address,
+        comment: comment
+      }
+
+      doOrder(form);
+    } else {
+      sendOrderErrorMessage(message);
+    }
   }
 });
 
