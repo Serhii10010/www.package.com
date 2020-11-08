@@ -551,42 +551,38 @@
 	<div class="basket__order-content">
 		<a class="close" id="close-order">X</a>
 		<p class="basket__order-title">Оформление заказа</p>
-		<form method="post" action="http://www.package.com/{{app()->getLocale()}}/checkout">
+		<form order-form>
 			{{ csrf_field() }}
 			<div class="basket__order-form">
 				<div class="basket__order-data-recipient">
 					<p class="basket__order-data-title">Данные получателя</p>
 					<div>
-						<input type="hidden" name="message_theme" value="ORDER_MAIN">
-						<input type="text" name="name" value="" placeholder="Имя" class="basket__order-input-name" required>
-						<input type="text" name="surname" value="" placeholder="Фамилия" class="basket__order-input-name" required>
-						<input type="tel" name="tel" value="" placeholder="+ 38 ( _ _ _ )  _ _  _ _  _ _ _" class="basket__order-input-phone phone" required>
+						<input type="text" name="name" value="" placeholder="Имя" class="basket__order-input-name" required order-customer-name>
+						<input type="text" name="surname" value="" placeholder="Фамилия" class="basket__order-input-name" required order-customer-surname>
+						<input type="tel" name="tel" value="" placeholder="+ 38 ( _ _ _ )  _ _  _ _  _ _ _" class="basket__order-input-phone phone" required order-customer-phone>
 						<label class="sales">Не пропустите выгодные предложения</label>
-						<input type="email" name="email" value="" placeholder="E-mail" class="basket__order-input-email">
+						<input type="email" name="email" value="" placeholder="E-mail" class="basket__order-input-email" order-customer-email>
 						<p class="news">Узнавайте первым про  акции, скидки и спецпредложения</p>
 					</div>
 				</div>
 				<div class="basket__order-data-delivery">
 					<p class="basket__order-data-delivery-title">Способ доставки</p>
 					<div>
-						<select id="delivery" name="delivery_method">
+						<select id="delivery" name="delivery_method" order-delivery-way>
 							<option value="null">Способ доставки</option>
-							<option value="CAT">CAT</option>
-							<option value="ukrPoshta">Укрпочта</option>
-							<option value="Delivery">Delivery</option>
-							<option value="Pickup">Самовывоз</option>
-							<option value="NP">NP</option>
+							<option value="pickup">Самовивіз</option>
+							<option value="np">NP</option>
 						</select>
-						<select id="areaID" name="area_name" required>
-							<option value="" disabled selected hidden>Выберите оласть</option>
+						<select id="areaID" name="area_name" required order-area>
+							<option value="" disabled selected hidden>Выберите область</option>
 						</select>
-						<select id="cityID" name="delivery_city" required>
+						<select id="cityID" name="delivery_city" required order-city>
 							<option value="" disabled selected hidden>Выберите город</option>
 						</select>
-						<select id="warehouseID" name="delivery_address" required>
+						<select id="warehouseID" name="delivery_address" required order-warehouse>
 							<option value="" disabled selected hidden>Выберите отделение</option>
 						</select>
-						<input type="hidden" name="delivery-method" value="" id="delivery__method">
+						<input type="hidden" name="delivery-method" value="null" id="delivery__method" oreder-comment>
 						<textarea placeholder="Комментарий к заказу" name="comment"></textarea>
 					</div>
 				</div>
@@ -603,6 +599,9 @@
 				<div class="basket__product" id="basket__product_checkout" basket-items>
 					<div class="basket-finish-price">
 						<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span> <span class="basket-finish-price-total">грн</span></p>
+					</div>
+					<div class="error-message-box">
+						<p message-error></p>
 					</div>
 					<div class="basket-btn-order">
 						<button class="basket-btn-accept" cart-do-order>Оформить заказ</button>
