@@ -1,14 +1,14 @@
 var deliveryMethod = document.querySelector("#delivery");
 
-deliveryMethod.addEventListener('change', delivery);
-
 $('#areaID').prop('disabled', 'disabled');
 $('#cityID').prop('disabled', 'disabled');
 $('#warehouseID').prop('disabled', 'disabled');
 
+deliveryMethod.addEventListener('change', delivery);
+
 function delivery() {
 
-  if (deliveryMethod.value == 'NP') {
+  if (deliveryMethod.value == 'np') {
     $('#areaID').css('display', 'inline-block');
     $('#cityID').css('display', 'inline-block');
     $('#warehouseID').css('display', 'inline-block');
@@ -16,15 +16,7 @@ function delivery() {
     $('#areaID').prop('disabled', false);
     $('#cityID').prop('disabled', 'disabled');
     $('#warehouseID').prop('disabled', 'disabled');
-    // var key;
-    //
-    // axios.post(`ru/get_settings`, {
-    //   type_info: 'np_api_key'
-    // }).then(function (response) {
-    //     key = response['data']['key'];
-    //     console.log(response['data']['key']);
-    // });
-    // console.log(key);
+
     $(function() {
       var settings = {
         "async": true,
@@ -50,10 +42,6 @@ function delivery() {
       $('#cityID').find('option').remove();
       $('#cityID').prop('disabled', 'disabled');
       $('#cityID').prop('disabled', false);
-
-      // $('#cityID').find('option').remove();
-      // $('#cityID').append($('<option>').text('Выберите город').attr('value', 'Выберите город'));
-      // $('#cityID select').val('Выберите город');
 
       $('#warehouseID').find('option').remove();
       $('#warehouseID').append($('<option>').text('Выберите отделение').attr('value', 'Выберите отделение'));
@@ -129,18 +117,12 @@ function delivery() {
     }
 
   }
-  else{
+  else if (deliveryMethod.value == 'pickup'){
     $('#areaID').css('display', 'none');
     $('#cityID').css('display', 'none');
     $('#warehouseID').css('display', 'none');
-    // $('#areaID').find('option').remove();
-    // $('#areaID').append($('<option>').text('Выберите область').attr('value', 'Выберите область'));
-    // $('#areaID').prop('disabled', 'disabled');
-    // $('#cityID').find('option').remove();
-    // $('#cityID').append($('<option>').text('Выберите город').attr('value', 'Выберите город'));
-    // $('#cityID').prop('disabled', 'disabled');
-    // $('#warehouseID').find('option').remove();
-    // $('#warehouseID').append($('<option>').text('Выберите отделение').attr('value', 'Выберите отделение'));
-    // $('#warehouseID').prop('disabled', 'disabled');
+
+    //TODO: add fields for PICKUP way
+    //use NP api for getting all cities from Ukraine
   }
 }
