@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" type="text/css" href="css/app.css">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="slick/slick.css">
 	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css">
 </head>
@@ -582,8 +582,7 @@
 						<select id="warehouseID" name="delivery_address" required order-warehouse>
 							<option value="" disabled selected hidden>Выберите отделение</option>
 						</select>
-						<input type="hidden" name="delivery-method" value="null" id="delivery__method" oreder-comment>
-						<textarea placeholder="Комментарий к заказу" name="comment"></textarea>
+						<textarea placeholder="Комментарий к заказу" name="comment" order-comment></textarea>
 					</div>
 				</div>
 			</div>
@@ -634,16 +633,6 @@
 	</div>
 </section>
 
-
-<section id="popup-mistake">
-	<div class="popup__container">
-		<div class="popup__content">
-			<a class="close" id="close-mistake">X</a>
-			<p class="popup__title-mistake">Проверьте правильность заполнений данных о доставке</p>
-		</div>
-	</div>
-</section>
-
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -654,17 +643,11 @@
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/delivery.js') }}"></script>
 <script src="{{ asset('js/cart.js') }}"></script>
-@if(session('order_open') == 'order_open')
+
+@if(session('order_open') == 'true')
 	<script type="text/javascript">
 		(function(){
 			document.querySelector("#basket__order").style.display = "block";
-		})();
-	</script>
-@endif
-@if(session('cart_error') == 'cart_error')
-	<script type="text/javascript">
-		(function(){
-			document.querySelector("#popup-mistake").style.display = "block";
 		})();
 	</script>
 @endif
