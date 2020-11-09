@@ -85,6 +85,6 @@ class CheckoutController extends Controller
     ->send(new OrderMail($orderInfo));
 
     // sending response - ok
-    return true;
+    return 1;
   }
 }
