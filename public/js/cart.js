@@ -257,7 +257,8 @@ function doOrder(form) {
     if (response.data === 1) {
       clearAllCartItems();
       //TODO: timeout box
-      window.location.href = `http://www.package.com${locale}`
+      document.cookie = "successful_order=true;max-age=30";
+      window.location.href = `http://www.package.com${locale}`;
     }
   })
   .catch(function (error) {

@@ -932,7 +932,7 @@ button:hover {
 	display: none;
 }
 
-#popup__basket, #popup-mistake {
+#popup__basket, #popup-successful-order {
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -1210,7 +1210,7 @@ input[type="number"] {
 	padding-bottom: 30px;
 }
 
-#popup-mistake {
+#popup-successful-order {
 	display: none;
 }
 
