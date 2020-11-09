@@ -248,10 +248,17 @@ function doOrder(form) {
   let locale = window.location.pathname;
   axios.post(`${locale}/checkout`, {
     cart: shoppingCart.listCart(),
+    elements_count: shoppingCart.totalCount(),
+    total_price: shoppingCart.totalCart(),
     form: form
   })
   .then(function (response) {
-    console.log(response);
+    console.log(response.data);
+    if (response.data === 1) {
+      clearAllCartItems();
+      //TODO: timeout box
+      window.location.href = `http://www.package.com${locale}`
+    }
   })
   .catch(function (error) {
     console.log(error);
@@ -279,7 +286,7 @@ $("button[cart-do-order]").click(function () {
     let phone = form.find('input[order-customer-phone]').val();
     let email = form.find('input[order-customer-email]').val();
 
-    let comment = form.find('select[order-comment]').val();
+    let comment = form.find('textarea[order-comment]').val();
 
     let delivery_way = form.find('select[order-delivery-way]').val();
     let area = form.find('select[order-area]').val();
@@ -292,7 +299,7 @@ $("button[cart-do-order]").click(function () {
     else if (surname == '') {message = (locale == '/ru') ? 'surname' : 'surname';}
     else if (phone == '') {message = (locale == '/ru') ? 'phone' : 'phone';}
     else if (email == '') {message = (locale == '/ru') ? 'email' : 'email';}
-    else if (delivery_way == null) {message = (locale == '/ru') ? 'delivery_way' : 'delivery_way';}
+    else if (delivery_way == null || delivery_way == "Способ доставки" || delivery_way == "null") {message = (locale == '/ru') ? 'delivery_way' : 'delivery_way';}
     else if (area == "null" || area == null || area == "Выберите область") {message = (locale == '/ru') ? 'area' : 'area';}
     else if (city == 'null' || city == null || city == "Выберите город") {message = (locale == '/ru') ? 'city' : 'city';}
     else if (address == 'null' || address == null || address == 'Выберите отделение') {message = (locale == '/ru') ? 'address' : 'address';}
