@@ -632,7 +632,14 @@
 		</div>
 	</div>
 </section>
-
+<section id="popup-successful-order" popup-successful-order>
+	<div class="popup__container">
+		<div class="popup__content">
+			<a class="close" close-successful-order-message>X</a>
+			<p class="popup__title-mistake">Ваше замовлення прийнято! Очікуйте дзвінок для підтвердження!</p>
+		</div>
+	</div>
+</section>
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -643,6 +650,31 @@
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/delivery.js') }}"></script>
 <script src="{{ asset('js/cart.js') }}"></script>
+
+<script type="text/javascript">
+	if(getCookie('successful_order')){
+		$('section[popup-successful-order]').css('display','flex');
+		$('a[close-successful-order-message]').on("click", function () {
+			$('section[popup-successful-order]').css('display','none');
+		});
+	}
+
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+		  var c = ca[i];
+		  while (c.charAt(0) == ' ') {
+		    c = c.substring(1);
+		  }
+		  if (c.indexOf(name) == 0) {
+		    return c.substring(name.length, c.length);
+		  }
+		}
+		return "";
+	}
+</script>
 
 @if(session('order_open') == 'true')
 	<script type="text/javascript">
