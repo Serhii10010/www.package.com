@@ -27,3 +27,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-z]{2}'], 'midd
   Route::post('/catalog', 'App\Http\Controllers\CatalogController@itemsInfo')
   ->name('catalog.items.info');
 });
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
