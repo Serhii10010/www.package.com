@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use App\Mail\OrderMail;
+use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
@@ -81,9 +82,9 @@ class CheckoutController extends Controller
       'count' => $elementsCount
     ];
 
-    Mail::to('serhii10010@gmail.com')
-    ->send(new OrderMail($orderInfo));
-
+    // Mail::to('serhii10010@gmail.com')
+    // ->send(new OrderMail($orderInfo));
+    
     // sending response - ok
     return 1;
   }
