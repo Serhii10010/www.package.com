@@ -573,15 +573,18 @@
 							<option value="pickup">Самовивіз</option>
 							<option value="np">NP</option>
 						</select>
-						<select id="areaID" name="area_name" required order-area>
+						<select id="areaID" name="area_name" order-area>
 							<option value="" disabled selected hidden>Выберите область</option>
 						</select>
-						<select id="cityID" name="delivery_city" required order-city>
+						<select id="cityID" name="delivery_city" order-city>
 							<option value="" disabled selected hidden>Выберите город</option>
 						</select>
-						<select id="warehouseID" name="delivery_address" required order-warehouse>
+						<select id="addressID" name="delivery_address" order-address>
 							<option value="" disabled selected hidden>Выберите отделение</option>
 						</select>
+						<input type="text" placeholder="Область" class="basket__order-input-delivery" order-area>
+						<input type="text" placeholder="Город" class="basket__order-input-delivery" order-city>
+						<input type="text" placeholder="Адрес" class="basket__order-input-delivery" order-address>
 						<textarea placeholder="Комментарий к заказу" name="comment" order-comment></textarea>
 					</div>
 				</div>
