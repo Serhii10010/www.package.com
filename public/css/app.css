@@ -1274,6 +1274,17 @@ input[type="number"] {
 	margin-bottom: 10px;
 }
 
+.basket__order-input-delivery {
+	padding: 15px 5px 15px 40px;
+	background-size: auto 50%;
+	background-color: #fff;
+	border-radius: 2px;
+	border: none;
+	border: 1px solid #c4c4c4;
+	margin-bottom: 10px;
+	display: none;
+}
+
 .basket__order-input-phone {
 	background: url(/images/phone-input.png?8c30cf2ba54c96d70e10cd11136e6d95) no-repeat 10px 13px;
 }
@@ -1521,7 +1532,7 @@ input[type="number"] {
 	display: none;
 }
 
-#warehouseID {
+#addressID {
 	display: none;
 }
 
