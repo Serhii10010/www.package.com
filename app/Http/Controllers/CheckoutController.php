@@ -88,8 +88,8 @@ class CheckoutController extends Controller
       'count' => $elementsCount
     ];
 
-    Mail::to('serhii10010@gmail.com')
-    ->send(new OrderMail($orderInfo));
+    // Mail::to('serhii10010@gmail.com')
+    // ->send(new OrderMail($orderInfo));
 
     // sending response - ok
     return 1;
