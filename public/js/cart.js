@@ -255,8 +255,8 @@ function doOrder(form) {
   .then(function (response) {
     // console.log(response.data);
     if (response.data === 1) {
-      clearAllCartItems();
-      document.cookie = "successful_order=true;max-age=30";
+      shoppingCart.clearCart();
+      document.cookie = "successful_order=true;max-age=5";
       window.location.href = `http://www.package.com${locale}`;
     }
   })
@@ -289,7 +289,7 @@ $("button[cart-do-order]").click(function () {
     let comment = form.find('textarea[order-comment]').val();
 
     let delivery_way = form.find('select[order-delivery-way]').val()  ;
-    delivery_way = (delivery_way == null || delivery_way == "Способ доставки" || delivery_way == "null") ? form.find('input[order-delivery-way]').val() : delivery_way;
+    delivery_way = (delivery_way == null || delivery_way == "Способ доставки" || delivery_way == "null") ? form.find('select[order-delivery-way]').val() : delivery_way;
     let area = form.find('select[order-area]').val();
     area = (area == "null" || area == null || area == "Выберите область") ? form.find('input[order-area]').val() : area;
     let city = form.find('select[order-city]').val();
@@ -303,10 +303,12 @@ $("button[cart-do-order]").click(function () {
     else if (surname == '') {message = (locale == '/ru') ? 'surname' : 'surname';}
     else if (phone == '') {message = (locale == '/ru') ? 'phone' : 'phone';}
     else if (email == '') {message = (locale == '/ru') ? 'email' : 'email';}
-    else if (delivery_way == null || delivery_way == "Способ доставки" || delivery_way == "null") {message = (locale == '/ru') ? 'delivery_way' : 'delivery_way';}
-    else if (area == "null" || area == null || area == "Выберите область" || area == "") {message = (locale == '/ru') ? 'area' : 'area';}
-    else if (city == 'null' || city == null || city == "Выберите город" || city == "") {message = (locale == '/ru') ? 'city' : 'city';}
-    else if (address == 'null' || address == null || address == 'Выберите отделение' || address == "") {message = (locale == '/ru') ? 'address' : 'address';}
+    else {
+      if (delivery_way == null || delivery_way == "Способ доставки" || delivery_way == "null") {message = (locale == '/ru') ? 'delivery_way' : 'delivery_way';}
+      else if (area == "null" || area == null || area == "Выберите область" || area == "") {message = (locale == '/ru') ? 'area' : 'area';}
+      else if (city == 'null' || city == null || city == "Выберите город" || city == "") {message = (locale == '/ru') ? 'city' : 'city';}
+      else if (address == 'null' || address == null || address == 'Выберите отделение' || address == "") {message = (locale == '/ru') ? 'address' : 'address';}
+    }
 
     if (message == "success"){
 
