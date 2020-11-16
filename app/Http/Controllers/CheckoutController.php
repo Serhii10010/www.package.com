@@ -31,15 +31,21 @@ class CheckoutController extends Controller
     $deliveryAddress = $form['address'];
 
     //get comment
-    $comment = $form['comment'];
+    $comment = ($form['comment'] == null) ? "" : $form['comment'];
 
     //getting cart info
     $cartTotal = $request->total_price;
     $elementsCount = $request->elements_count;
 
-    //phone proccesing1
-    $symbols = array(" ", "-", "+", ")", "(");
+    $symbols = array(" ", "-", "+", ")", "(", "'", "\"");
+
+    //phone proccesing
     $phone = str_replace($symbols, "", $phone);
+
+    //delivery info proccesing
+    $deliveryArea = str_replace($symbols, "", $deliveryArea);
+    $deliveryCity = str_replace($symbols, "", $deliveryCity);
+    $deliveryAddress = str_replace($symbols, "", $deliveryAddress);
 
     //adding info to database
     DB::beginTransaction();
@@ -82,9 +88,9 @@ class CheckoutController extends Controller
       'count' => $elementsCount
     ];
 
-    // Mail::to('serhii10010@gmail.com')
-    // ->send(new OrderMail($orderInfo));
-    
+    Mail::to('serhii10010@gmail.com')
+    ->send(new OrderMail($orderInfo));
+
     // sending response - ok
     return 1;
   }
