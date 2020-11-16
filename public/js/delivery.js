@@ -3,6 +3,10 @@ $('#delivery').on("change", function () {
   $('[order-city]').css('display', 'none');
   $('[order-address]').css('display', 'none');
 
+  $('[order-address]').val('');
+  $('[order-city]').val('');
+  $('[order-area]').val('');
+
   $('#addressID').find('option').remove();
   $('#addressID').append($('<option>').text('Выберите отделение').attr('value', 'Выберите отделение'));
   $('#addressID select').val('Выберите отделение');
@@ -17,8 +21,8 @@ $('#delivery').on("change", function () {
 
   if($(this).val() == 'np'){
     npDelivery();
-  } else if($(this).val() == 'pickup') {
-    pickupDelivery();
+  } else if($(this).val() == 'tohome') {
+    tohomeDelivery();
   }
 });
 
@@ -130,6 +134,6 @@ function npDelivery () {
   }
 }
 
-function pickupDelivery () {
+function tohomeDelivery () {
   $('.basket__order-input-delivery').css('display', 'inline-block');
 }
