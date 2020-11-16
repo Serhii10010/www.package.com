@@ -346,6 +346,7 @@ $("button[catalog-item-order]").click(function () {
   productInCart.style.display = 'flex';
 
   displayCart();
+  $('#popup__basket').css('display', 'block');
 });
 
 // Clear items
