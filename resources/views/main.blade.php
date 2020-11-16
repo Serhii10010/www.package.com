@@ -570,7 +570,7 @@
 					<div>
 						<select id="delivery" name="delivery_method" order-delivery-way>
 							<option value="null">Способ доставки</option>
-							<option value="pickup">Самовивіз</option>
+							<option value="tohome">Курьером</option>
 							<option value="np">NP</option>
 						</select>
 						<select id="areaID" name="area_name" order-area>
@@ -639,7 +639,7 @@
 	<div class="popup__container">
 		<div class="popup__content">
 			<a class="close" close-successful-order-message>X</a>
-			<p class="popup__title-mistake">Ваше замовлення прийнято! Очікуйте дзвінок для підтвердження!</p>
+			<p class="popup__title-mistake">Ваша заявка принята! Ожидайте дзвонок для подтвержения!</p>
 		</div>
 	</div>
 </section>
