@@ -9,9 +9,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-	<h3>Theme: {{$theme}}.      </h3>
-	<h3>Name:  {{$name}}.       </h3>
-	<h3>Phone: {{$tel}}.        </h3>
-	<h3>Checkbox: {{$checkbox}}.</h3>
+	<h3>Тема: {{$theme}}.</h3>
+	<h3>Ім'я':  {{$name}}.</h3>
+	<h3>Телефон: {{$phone}}.</h3>
+	<h3>Додатково: {{$checkbox}}.</h3>
 </body>
 </html>

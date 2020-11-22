@@ -8,6 +8,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="slick/slick.css">
 	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css">
+	<style>
+	.preloader {
+	    background-color: #fff;
+	    position: fixed;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    z-index: 1000;
+	}
+	.preloader__loader {
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%)
+	}
+	</style>
 </head>
 <body>
 <header>
@@ -249,17 +266,17 @@
 				<div class="print__order">
 					<p class="print__order-title">Закажите печать на пакеты</p>
 					<p class="print__order-subtitle">Мы перезвоним Вам в течение 15 минут</p>
-					<form method="POST">
+					<form method="post" action="{{route("messout", app()->getLocale())}}">
 						{{ csrf_field() }}
-						<input type="hidden" name="message_theme" value="PRINT">
+						<input type="hidden" name="message_theme" value="Замовлення прінта на пакети">
 						<div class="print__order-form-input">
-							<input type="text" placeholder="Имя" class="print__order-form-input-name" name="name" value="" required>
-							<input type="tel" name="tel" value="" placeholder="+38 (000) 00-00-000" class="print__order-form-input-phone phone" required>
+							<input type="text" placeholder="Имя" class="print__order-form-input-name" name="name" required>
+							<input type="tel" name="phone" value="" placeholder="+38 (000) 00-00-000" class="print__order-form-input-phone phone" required>
 							<button type="submit" class="print__order-form-input-btn">Отправить &nbsp;</button>
 						</div>
 						<div class="print__order-form-checkbox">
-							<input type="checkbox" id="checkbox1" name="checkbox" required>
-							<label for="checkbox1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</label>
+							<input type="checkbox" id="checkbox1" name="checkbox" value="Перезвоните в течении 15 минут!">
+							<label for="checkbox1">Перезвоните в течении 15 минут!</label>
 						</div>
 					</form>
 				</div>
@@ -275,15 +292,15 @@
 				<p class="wholesale__text-subtitle">У нас гибкая система скидок для диллеров и магазинов</p>
 			</div>
 			<div class="wholesale__form">
-				<form method="POST">
+				<form method="post" action="{{route("messout", app()->getLocale())}}">
 					{{ csrf_field() }}
-					<input type="hidden" name="message_theme" value="OPT_PARTNER">
+					<input type="hidden" name="message_theme" value="Можливий ОПТ партнер">
 					<input type="text" name="name" value="" placeholder="Имя" class="wholesale__form-input-name" required>
-					<input type="tel" name="tel" value="" placeholder="+38 (000) 00-00-000" class="wholesale__form-input-phone phone" required>
+					<input type="tel" name="phone" value="" placeholder="+38 (000) 00-00-000" class="wholesale__form-input-phone phone" required>
 					<button type="submit" class="wholesale__form-input-btn">Стать партнером &nbsp;</button>
 					<div class="print__order-form-checkbox">
-						<input type="checkbox" id="checkbox2" name="checkbox" required>
-						<label for="checkbox2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</label>
+						<input type="checkbox" id="checkbox2" name="checkbox" value="Перезвоните в течении 15 минут!">
+						<label for="checkbox2">Перезвоните в течении 15 минут!</label>
 					</div>
 				</form>
 			</div>
@@ -336,7 +353,7 @@
 				@foreach ($reviews as $review)
 					<div class="review-slider-slide-content">
 						<div class="review-slider-slide-content-top">
-							{{-- <img src="{{ asset('storage/'.$review->photo) }}"> --}}
+							<img src="{{ asset('storage/'.$review->photo) }}">
 							<p class="review-slider-slide-content-name">{{$review->fio}}</p>
 						</div>
 						<div>
@@ -394,7 +411,7 @@
 			<div class="cooperation-slider">
 				@foreach ($partners as $partner)
 					<div>
-						{{-- <img src="{{ asset('storage/'.$partner->image) }}"> --}}
+						<img src="{{ asset('storage/'.$partner->image) }}">
 					</div>
 				@endforeach
 				<div>
@@ -449,17 +466,17 @@
 				</div>
 
 				<div class="footer-form">
-					<form method="POST">
+					<form method="POST" action="{{route('messout', app()->getLocale())}}">
 						{{ csrf_field() }}
-						<input type="hidden" name="message_theme" value="QUESTIONS">
+						<input type="hidden" name="message_theme" value="ЗАЛИШИЛИСЬ ПИТАННЯ">
 						<div class="footer-form-input">
 							<input type="text" name="name" value="" placeholder="Имя" class="footer-form-input-name" required>
-							<input  type="tel" name="tel" value="" placeholder="+7 ( _ _ _ )  _ _ _   _ _ _ _" class="footer-form-input-phone phone" required>
+							<input  type="tel" name="phone" value="" placeholder="+7 ( _ _ _ )  _ _ _   _ _ _ _" class="footer-form-input-phone phone" required>
 							<button type="submit" class="footer-form-input-btn">Отправить &nbsp;</button>
 						</div>
 						<div class="footer-form-checkbox">
-							<input type="checkbox" name ="checkbox" id="checkbox3" required>
-							<label for="checkbox3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</label>
+							<input type="checkbox" name ="checkbox" id="checkbox3" value="Перезвоните в течении 15 минут!">
+							<label for="checkbox3">Перезвоните в течении 15 минут!</label>
 						</div>
 					</form>
 				</div>
@@ -643,6 +660,11 @@
 		</div>
 	</div>
 </section>
+<div class="preloader">
+    <div class="preloader__loader">
+        <img src="images/loader.gif" alt="" />
+    </div>
+</div>
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -677,6 +699,18 @@
 		}
 		return "";
 	}
+</script>
+
+<script>
+// Preloader page
+jQuery(document).ready(function($) {
+	$(window).on('load', function () {
+		var $preloader = $('.preloader'),
+		    $loader = $preloader.find('.preloader__loader');
+		$loader.fadeOut();
+		$preloader.delay(250).fadeOut(200);
+	});
+});
 </script>
 
 @if(session('order_open') == 'true')
