@@ -48,7 +48,8 @@ function npDelivery () {
       "data": "{\"apiKey\": \"0768ba96d33e597f02eee417ff2538a9\", \"modelName\": \"Address\",\"calledMethod\": \"getAreas\"}"
     }
     $.ajax(settings).done(function (response) {
-      $('#cityID').append($('<option>').text('Выберите область').attr('value', 'null'));
+      $('#areaID').find('option').remove();
+      $('#areaID').append($('<option>').text('Выберите область').attr('value', 'null'));
       $.each(response['data'], function(i, value) {
          $('#areaID').append($('<option>').text(value['Description']).attr('value', value['Description']));
       });
@@ -104,6 +105,7 @@ function npDelivery () {
     }
 
     $.ajax(settings).done(function (response) {
+      $('#addressID').find('option').remove();
       $.each(response['data'], function(i, value) {
          $('#addressID').append($('<option>').text(value['Description']).attr({'value': value['Description'], 'warehouse_ref': value['Ref']}));
       });
@@ -124,6 +126,7 @@ function npDelivery () {
     }
 
     $.ajax(settings).done(function (response) {
+      $('#cityID').find('option').remove();
       $('#cityID').append($('<option>').text('Выберите город').attr('value', 'null'));
       $.each(response['data'], function(i, value) {
         if(value['AreaDescription'] == area){

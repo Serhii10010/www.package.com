@@ -189,6 +189,10 @@ function displayCart() {
         basketProduct.prepend(cartItemNew);
         let basketChechout = cartItemNew.cloneNode(true);
         basketProductCheckout.prepend(basketChechout);
+
+        //adding button "in cart" or "order"
+        $(`div[catalog-item-id=\'${item.id}\']`).find('.catalog-price').css('display', 'none');
+        $(`div[catalog-item-id=\'${item.id}\']`).find('.catalog-price-add-additional').css('display', 'flex');
       }
     })
     .catch(function (error) {
@@ -236,8 +240,8 @@ function clearAllCartItems () {
 }
 
 function prepareOrder() {
-  let locale = window.location.pathname;
-  window.location.href = `http://www.package.com${locale}/checkout`;
+  $('#popup__basket').css('display', 'none');
+  $('#basket__order').css('display', 'block');
 }
 
 function sendOrderErrorMessage(message){
@@ -262,7 +266,7 @@ function doOrder(form) {
   })
   .catch(function (error) {
     console.log(error);
-  })
+  });
 }
 
 $("div[locale=\'ua\']").on("click", "a[locale-ru]", emptyCart);
@@ -343,10 +347,6 @@ $("button[catalog-item-order]").click(function () {
   shoppingCart.addItemToCart(productId, price, 1);
   $('[cart-item]').remove();
 
-  $(this).parent().css('display', 'none');
-  let productInCart = $(this).parent().parent().children()[2];
-  productInCart.style.display = 'flex';
-
   displayCart();
   $('#popup__basket').css('display', 'block');
 });
@@ -362,12 +362,6 @@ $('div[basket-items]').on("click", "a[cart-item-delete]", function(event) {
   shoppingCart.removeItemFromCartAll(productId);
   $('[cart-item]').remove();
 
-  let productOrderButton = $('button[catalog-item-order]').parent();
-  let productInCartButton = $('a[catalog-item-in-cart]').parent();
-
-  $(`[catalog-item-id=${productId}]`).find(productOrderButton).css('display', 'flex');
-  $(`[catalog-item-id=${productId}]`).find(productInCartButton).css('display', 'none');
-
   displayCart();
 });
 
@@ -376,14 +370,6 @@ $('div[basket-items]').on("click", "a[cart-item-minus]", function () {
   var productId = $(this).parent().parent().parent().attr("product-id");
 
   var count = Number($(this).parent().find('input[cart-item-quantity]').val());
-
-  if (count == 1) {
-    let productOrderButton = $('button[catalog-item-order]').parent();
-    let productInCartButton = $('a[catalog-item-in-cart]').parent();
-
-    $(`[catalog-item-id=${productId}]`).find(productOrderButton).css('display', 'flex');
-    $(`[catalog-item-id=${productId}]`).find(productInCartButton).css('display', 'none');
-  }
 
   shoppingCart.removeItemFromCart(productId);
   $('[cart-item]').remove();

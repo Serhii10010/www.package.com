@@ -19,7 +19,6 @@ var basketOpenMobile = document.querySelector("#basket-mobile"),
         popupBasket.style.display = "none";
         popupSmall.style.display = "none";
         basketOrder.style.display = "none";
-        popupMistake.style.display = "none";
       });
     });
 

@@ -1928,7 +1928,7 @@ input[type="number"] {
 
 }
 
-.cart-prepare-order, .cart-clear, .btn-none{
+.cart-prepare-order, .cart-clear{
 	display: none;
 }
 
