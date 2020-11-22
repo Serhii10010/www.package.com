@@ -24,6 +24,9 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-z]{2}'], 'midd
   Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')
   ->name('checkout.index');
 
+  Route::post('/messout', 'App\Http\Controllers\MessageoutController@sendToTelegramAndEmail')
+  ->name('messout');
+
   Route::post('/catalog', 'App\Http\Controllers\CatalogController@itemsInfo')
   ->name('catalog.items.info');
 });
