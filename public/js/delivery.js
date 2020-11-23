@@ -1,4 +1,5 @@
-$('#delivery').on("change", function () {
+$('select[order-delivery-way]').on("change", function () {
+  console.log($(this).val());
   $('[order-area]').css('display', 'none');
   $('[order-city]').css('display', 'none');
   $('[order-address]').css('display', 'none');

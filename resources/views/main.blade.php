@@ -114,7 +114,7 @@
 	<div class="container">
 		<div class="order">
 			<div class="order__title">
-				<p><span class="fz-99">Пакеты<br></span><span class="fz-48">для хранения</span><br><span class="fz-158">ШИН</span></p>
+				<p><span class="fz-99">{{__('Пакеты')}}<br></span><span class="fz-48">{{__('для хранения')}}</span><br><span class="fz-158">ШИН</span></p>
 				<a class="order__title-btn" href="#catalog">{{__('Заказать сейчас')}}</a>
 			</div>
 			<div class="order__img">
@@ -127,11 +127,11 @@
 	<div class="about-bg">
 		<div class="container">
 			<div class="about">
-				<p class="about-title"><span>О</span> нас</p>
-				<p class="about-subtitle">Мы производим пакеты для автомобильных колес. При производстве пакетов для шин мы используем только первинное сырье, что не дает возможность пакетам выделять неприятные запахи, при этом придавая пакету прочность.
-															<br>Актуальное предложение для шиномонтажей, автосервисов и автосалонов. Этот пакет защитит салон автомобиля от грязи, во время сменны шин, также колесо в пакете можно удобно и практично хранить в гараже. На нашем складе всегда есть в наличии готовая продукция.
-															<br>По вашему желанию можем изготовить пакеты для шин с печатью логотипа Вашей компании. Мы используем у тебя полноцветную печатную машину,с помощью которой есть возможность нанесение печати  – до 6 цветов.
-															<br>К примеру, пакет с логотипом станет отличным подарком владельцу машины от СТО, магазина автозапчастей, или автосалона. Это напомнит клиенту о качественном обслуживании, и он обязательно к вам вернется.</p>
+				<p class="about-title"><span>{{__('О')}}</span> нас</p>
+				<p class="about-subtitle">{{__('Мы производим пакеты для автомобильных колес. При производстве пакетов для шин мы используем только первинное сырье, что не дает возможность пакетам выделять неприятные запахи, при этом придавая пакету прочность.')}}
+															<br>{{__('Актуальное предложение для шиномонтажей, автосервисов и автосалонов. Этот пакет защитит салон автомобиля от грязи, во время сменны шин, также колесо в пакете можно удобно и практично хранить в гараже. На нашем складе всегда есть в наличии готовая продукция.')}}
+															<br>{{__('По вашему желанию можем изготовить пакеты для шин с печатью логотипа Вашей компании. Мы используем у тебя полноцветную печатную машину,с помощью которой есть возможность нанесение печати  – до 6 цветов.')}}
+															<br>{{__('К примеру, пакет с логотипом станет отличным подарком владельцу машины от СТО, магазина автозапчастей, или автосалона. Это напомнит клиенту о качественном обслуживании, и он обязательно к вам вернется.')}}</p>
 				<div class="about__items">
 					<div class="about__item">
 						<img src="images/about-shopping.png" alt="">
@@ -160,7 +160,7 @@
 <section id="catalog">
 	<div class="container">
 		<div class="catalog">
-			<p class="catalog-title"><span>Каталог</span> товаров</p>
+			<p class="catalog-title"><span>Каталог</span> {{__('товаров')}}</p>
 			<div class="catalog-items">
 				@foreach ($products as $product)
 					<div class="catalog-item" catalog-item catalog-item-id="{{$product->id}}" catalog-item-price="{{$product->price}}">
@@ -230,21 +230,21 @@
 	<div class="print-bg">
 		<div class="container">
 			<div class="print">
-				<p class="print__title"><span>Печать</span><br>С логотипом</p>
+				<p class="print__title"><span>{{__('Печать')}}</span><br>{{__('С логотипом')}}</p>
 				<div class="print__desc">
 					<div class="print__desc-text">
-						<p>Наносим печать<br> на пакеты</p>
-						<span>Тираж от <span class="bold">3 000 шт</span></span>
+						<p>{{__('Наносим печать')}}<br> {{__('на пакеты')}}</p>
+						<span>Тираж {{__('от')}} <span class="bold">3 000 шт</span></span>
 					</div>
 					<div class="print__desc-img">
 						<img src="images/print.png" alt="">
 					</div>
 				</div>
 				<div class="print__portfolio">
-					<p class="print__portfolio-title">Портфолио</p>
+					<p class="print__portfolio-title">{{__('Портфолио')}}</p>
 					<div class="print__portfolio-slider">
 						@foreach ($portfolios as $portfolio)
-							{{-- <div class="print__portfolio-slider-slide-content"><img src="{{ asset('storage/'.$portfolio->image) }}"></div> --}}
+							<div class="print__portfolio-slider-slide-content"><img src="{{ asset('storage/'.$portfolio->image) }}"></div>
 						@endforeach
 						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
 						<div class="print__portfolio-slider-slide-content"><img src="images/slider-img.png"></div>
@@ -264,19 +264,19 @@
 					</div>
 				</div>
 				<div class="print__order">
-					<p class="print__order-title">Закажите печать на пакеты</p>
-					<p class="print__order-subtitle">Мы перезвоним Вам в течение 15 минут</p>
+					<p class="print__order-title">{{__('Закажите печать на пакеты')}}</p>
+					<p class="print__order-subtitle">{{__('Мы перезвоним Вам в течение 15 минут')}}</p>
 					<form method="post" action="{{route("messout", app()->getLocale())}}">
 						{{ csrf_field() }}
 						<input type="hidden" name="message_theme" value="Замовлення прінта на пакети">
 						<div class="print__order-form-input">
 							<input type="text" placeholder="Имя" class="print__order-form-input-name" name="name" required>
 							<input type="tel" name="phone" value="" placeholder="+38 (000) 00-00-000" class="print__order-form-input-phone phone" required>
-							<button type="submit" class="print__order-form-input-btn">Отправить &nbsp;</button>
+							<button type="submit" class="print__order-form-input-btn">{{__('Заказать')}} &nbsp;</button>
 						</div>
 						<div class="print__order-form-checkbox">
 							<input type="checkbox" id="checkbox1" name="checkbox" value="Перезвоните в течении 15 минут!">
-							<label for="checkbox1">Перезвоните в течении 15 минут!</label>
+							<label for="checkbox1">{{__('Перезвоните в течении 15 минут!')}}</label>
 						</div>
 					</form>
 				</div>
@@ -289,7 +289,7 @@
 		<div class="wholesale">
 			<div class="wholesale__text">
 				<p class="wholesale__text-title"><span>{{__('Хотите купить')}}</span><br>оптом?</p>
-				<p class="wholesale__text-subtitle">У нас гибкая система скидок для диллеров и магазинов</p>
+				<p class="wholesale__text-subtitle">{{__('У нас гибкая система скидок для диллеров и магазинов')}}</p>
 			</div>
 			<div class="wholesale__form">
 				<form method="post" action="{{route("messout", app()->getLocale())}}">
@@ -297,10 +297,10 @@
 					<input type="hidden" name="message_theme" value="Можливий ОПТ партнер">
 					<input type="text" name="name" value="" placeholder="Имя" class="wholesale__form-input-name" required>
 					<input type="tel" name="phone" value="" placeholder="+38 (000) 00-00-000" class="wholesale__form-input-phone phone" required>
-					<button type="submit" class="wholesale__form-input-btn">Стать партнером &nbsp;</button>
+					<button type="submit" class="wholesale__form-input-btn">{{__('Стать партнером')}} &nbsp;</button>
 					<div class="print__order-form-checkbox">
 						<input type="checkbox" id="checkbox2" name="checkbox" value="Перезвоните в течении 15 минут!">
-						<label for="checkbox2">Перезвоните в течении 15 минут!</label>
+						<label for="checkbox2">{{__('Перезвоните в течении 15 минут!')}}</label>
 					</div>
 				</form>
 			</div>
@@ -310,7 +310,7 @@
 <section id="benefits">
 	<div class="container">
 		<div class="benefits">
-			<p class="benefits__title"><span>Преимущества</span><br>пакета для шин</p>
+			<p class="benefits__title"><span>{{__('Преимущества')}}</span><br>пакета для шин</p>
 			<div class="benefits__items">
 				<div class="benefits-item">
 					<div>
@@ -348,7 +348,7 @@
 <section id="review">
 	<div class="container">
 		<div class="review">
-			<p class="review__title">Отзывы</p>
+			<p class="review__title">{{__('Отзывы')}}</p>
 			<div class="review-slider">
 				@foreach ($reviews as $review)
 					<div class="review-slider-slide-content">
@@ -407,7 +407,7 @@
 <section id="cooperation">
 	<div class="container">
 		<div class="cooperation">
-			<p class="cooperation__title"><span>С нами </span>работают</p>
+			<p class="cooperation__title"><span>{{__('С нами')}} </span>{{__('работают')}}</p>
 			<div class="cooperation-slider">
 				@foreach ($partners as $partner)
 					<div>
@@ -444,7 +444,7 @@
 </section>
 <section id="footer">
 	<div class="container">
-		<p class="footer__title"><span>Остались</span> вопросы?</p>
+		<p class="footer__title"><span>{{__('Остались')}}</span> {{__('вопросы')}}?</p>
 		<div class="footer">
 			<div class="footer-contact">
 				<p class="footer-contact-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a</p>
@@ -455,7 +455,7 @@
 						<a href="mail:"><img src="images/email.png">paketi@gmail.com</a>
 					</div>
 					<div class="footer-contacts-address">
-						<p class="footer-contacts-address-p"><img src="images/address-vector.png">г. Киев ул. Майдан<br> независимости, 15 А</p>
+						<p class="footer-contacts-address-p"><img src="images/address-vector.png">{{__('г. Киев ул. Майдан')}}<br> {{__('независимости, 15А')}}</p>
 						<div class="footer-social">
 							<a href="#"><img src="images/youtube.png"></a>
 							<a href="#"><img src="images/facebook.png"></a>
@@ -472,11 +472,11 @@
 						<div class="footer-form-input">
 							<input type="text" name="name" value="" placeholder="Имя" class="footer-form-input-name" required>
 							<input  type="tel" name="phone" value="" placeholder="+7 ( _ _ _ )  _ _ _   _ _ _ _" class="footer-form-input-phone phone" required>
-							<button type="submit" class="footer-form-input-btn">Отправить &nbsp;</button>
+							<button type="submit" class="footer-form-input-btn">{{__('Задать вопрос')}} &nbsp;</button>
 						</div>
 						<div class="footer-form-checkbox">
 							<input type="checkbox" name ="checkbox" id="checkbox3" value="Перезвоните в течении 15 минут!">
-							<label for="checkbox3">Перезвоните в течении 15 минут!</label>
+							<label for="checkbox3">{{__('Перезвоните в течении 15 минут!')}}</label>
 						</div>
 					</form>
 				</div>
@@ -500,6 +500,7 @@
 				<div class="basket__title-item number">Кол-во</div>
 				<div class="basket__title-item units">Ед.</div>
 				<div class="basket__title-item subtotal">Итого, грн</div>
+				<div class="delete"></div>
 			</div>
 			<div class="basket__product" id="basket__product" basket-items>
 				<div class="basket__product-container" id="basket__product-container" data-id="rowId" style="display:none;" cart-item-new>
@@ -546,10 +547,10 @@
 					</div>
 					<div class="basket__product-desc units">шт.</div>
 					<div class="basket__product-desc subtotal" cart-item-subtotal></div>
-					<a class="delete-item" id="delete-item" cart-item-delete>X</a>
+					<a class="delete-item delete" id="delete-item" cart-item-delete>X</a>
 				</div>
 				<div class="basket-finish-price">
-					<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span><span class="basket-finish-price-total">грн</span></p>
+					<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span><span class="basket-finish-price-total"> грн</span></p>
 				</div>
 				<div class="basket-btn">
 					<div>
@@ -614,40 +615,43 @@
 					<div class="basket__title-item number">Кол-во</div>
 					<div class="basket__title-item units">Ед.</div>
 					<div class="basket__title-item total">Итого, грн</div>
+					<div class="delete">
+
+					</div>
 				</div>
 				<div class="basket__product" id="basket__product_checkout" basket-items>
 					<div class="basket-finish-price">
-						<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span> <span class="basket-finish-price-total">грн</span></p>
+						<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span> <span class="basket-finish-price-total"> грн</span></p>
 					</div>
 					<div class="error-message-box">
 						<p message-error></p>
 					</div>
 					<div class="basket-btn-order">
-						<button class="basket-btn-accept" cart-do-order>Оформить заказ</button>
-						<p>Подтверждая заказ вы соглашаетесь с <a href="">политикой конфиденциальности</a></p>
+						<div>
+							<button class="basket-btn-accept" cart-return-to-catalog>Выбрать товары</button>
+						</div>
+						<div>
+							<button class="basket-btn-accept" cart-do-order>Оформить заказ</button>
+							<p>Подтверждая заказ вы соглашаетесь с <a href="">политикой конфиденциальности</a></p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</form>
-		<div class="basket-btn">
-			<div>
-				<button class="basket-btn-return btn-none" cart-return-to-catalog>Выбрать товары</button>
-			</div>
-		</div>
 	</div>
 </section>
 <section id="popup">
 	<div class="popup__container">
 		<div class="popup__content">
 			<a class="close" id="close-popup">X</a>
-			<p class="popup__title">Отправте заявку</p>
-			<p class="popup__subtitle">и мы свяжемся с Вами в течении 30 минут</p>
+			<p class="popup__title">{{__('Отправте заявку')}}</p>
+			<p class="popup__subtitle">{{__('и мы свяжемся с Вами в течении 15 минут')}}</p>
 			<form method="post">
 				{{ csrf_field() }}
 				<input type="hidden" name="message_theme" value="PRICE_QUESTION">
 				<input type="text" name="name" value="" placeholder="Имя" class="basket__order-input-name" required>
 				<input type="tel" name="tel" value="" placeholder="+ 38 ( _ _ _ )  _ _  _ _  _ _ _" class="basket__order-input-phone phone" required>
-				<button type="submit">Свяжитесь с нами</button>
+				<button type="submit">{{__('Свяжитесь с мной')}}</button>
 			</form>
 		</div>
 	</div>
@@ -656,7 +660,8 @@
 	<div class="popup__container">
 		<div class="popup__content">
 			<a class="close" close-successful-order-message>X</a>
-			<p class="popup__title-mistake">Ваша заявка принята! Ожидайте дзвонок для подтвержения!</p>
+			<p class="popup__title-mistake-blue">Ваша заявка принята!</p><br>
+			<p class="popup__title-mistake">Ожидайте дзвонок для подтвержения!</p>
 		</div>
 	</div>
 </section>

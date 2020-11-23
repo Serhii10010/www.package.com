@@ -52,6 +52,7 @@ var shoppingCart = (function() {
     for(var i in cart) {
       if (cart[i].productId === productId) {
         cart[i].count = count;
+        saveCart();
         break;
       }
     }
@@ -283,7 +284,7 @@ $("button[cart-do-order]").click(function () {
     event.preventDefault();
     let locale = window.location.pathname;
 
-    let form = $(this).parent().parent().parent().parent('form[order-form]');
+    let form = $(this).parent().parent().parent().parent().parent('form[order-form]');
 
     let name = form.find('input[order-customer-name]').val();
     let surname = form.find('input[order-customer-surname]').val();
@@ -292,7 +293,8 @@ $("button[cart-do-order]").click(function () {
 
     let comment = form.find('textarea[order-comment]').val();
 
-    let delivery_way = form.find('select[order-delivery-way]').val()  ;
+    let delivery_way = form.find('select[order-delivery-way]').val();
+
     delivery_way = (delivery_way == null || delivery_way == "Способ доставки" || delivery_way == "null") ? form.find('select[order-delivery-way]').val() : delivery_way;
     let area = form.find('select[order-area]').val();
     area = (area == "null" || area == null || area == "Выберите область") ? form.find('input[order-area]').val() : area;
@@ -313,7 +315,6 @@ $("button[cart-do-order]").click(function () {
       else if (city == 'null' || city == null || city == "Выберите город" || city == "") {message = (locale == '/ru') ? 'city' : 'city';}
       else if (address == 'null' || address == null || address == 'Выберите отделение' || address == "") {message = (locale == '/ru') ? 'address' : 'address';}
     }
-
     if (message == "success"){
 
       let form = {
@@ -362,6 +363,12 @@ $('div[basket-items]').on("click", "a[cart-item-delete]", function(event) {
   shoppingCart.removeItemFromCartAll(productId);
   $('[cart-item]').remove();
 
+  let productOrderButton = $('button[catalog-item-order]').parent();
+  let productInCartButton = $('a[catalog-item-in-cart]').parent();
+
+  $(`[catalog-item-id=${productId}]`).find(productOrderButton).css('display', 'flex');
+  $(`[catalog-item-id=${productId}]`).find(productInCartButton).css('display', 'none');
+
   displayCart();
 });
 
@@ -390,7 +397,7 @@ $('div[basket-items]').on("click", "a[cart-item-plus]", function () {
 $('div[basket-items]').on("change", "input[cart-item-quantity]", function(event) {
   var productId = $(this).parent().parent().parent().attr("product-id");
   var count = Number($(this).val());
-  if(count > 0){
+  if(count > 0 && count <= 1000){
     shoppingCart.setCountForItem(productId, count);
     $('[cart-item]').remove();
     displayCart();
