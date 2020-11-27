@@ -76,7 +76,7 @@
 			<div class="header__basket">
 				<a id="basket">
 					<img src="images/basket.png" alt="">
-					<div class="basket-number" id="basket-number-1" cart-items-count></div>
+					<div class="basket-number" cart-items-count></div>
 				</a>
 			</div>
 		</div>
@@ -102,7 +102,7 @@
 				<div class="header__basket">
 					<a id="basket-mobile">
 						<img src="images/basket.png" alt="">
-						<div class="basket-number" id="basket-number-2"></div>
+						<div class="basket-number" cart-items-count></div>
 				</div>
 				</a>
 			</div>
@@ -471,7 +471,7 @@
 						<input type="hidden" name="message_theme" value="ЗАЛИШИЛИСЬ ПИТАННЯ">
 						<div class="footer-form-input">
 							<input type="text" name="name" value="" placeholder="Имя" class="footer-form-input-name" required>
-							<input  type="tel" name="phone" value="" placeholder="+7 ( _ _ _ )  _ _ _   _ _ _ _" class="footer-form-input-phone phone" required>
+							<input  type="tel" name="phone" value="" placeholder="+38 ( _ _ _ )  _ _ _   _ _ _ _" class="footer-form-input-phone phone" required>
 							<button type="submit" class="footer-form-input-btn">{{__('Задать вопрос')}} &nbsp;</button>
 						</div>
 						<div class="footer-form-checkbox">
