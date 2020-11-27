@@ -214,7 +214,13 @@ function displayCart() {
 
   $('span[cart-total-price]').html(shoppingCart.totalCart());
   $('.basket-finish-price-units').html(shoppingCart.totalCount());
-  $('div[cart-items-count]').html(shoppingCart.totalCount());
+  if(shoppingCart.totalCount() > 0){
+    $('div[cart-items-count]').css('display', 'block');
+    $('div[cart-items-count]').html(shoppingCart.totalCount());
+  } else {
+    $('div[cart-items-count]').css('display', 'none');
+    $('div[cart-items-count]').html('');
+  }
 }
 
 function emptyCart(event) {
@@ -355,6 +361,7 @@ $("button[catalog-item-order]").click(function () {
 // Clear items
 $('button[clear-cart]').click(function() {
   clearAllCartItems();
+  displayCart();
 });
 
 // Delete item button

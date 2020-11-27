@@ -168,6 +168,7 @@ button:hover {
 	top: -8px;
 	left: -10px;
 	border-radius: 50%;
+	display: none;
  }
 
  .header__mobile {
