@@ -8,43 +8,48 @@ var basketOpenMobile = document.querySelector("#basket-mobile"),
     catalogPrice = document.querySelectorAll(".catalog-price"),
     btnReturnCatalog = document.querySelector("button[cart-return-to-catalog]");
 
-    document.body.addEventListener('click', e => {
-      if (e.target.classList.contains('catalog-price-check-btn')) {
-        popupSmall.style.display = "block";
-      }
-    });
+const menuToggle = document.querySelector("#menu__toggle");
+document.body.addEventListener('click', e => {
+  if (e.target.classList.contains('catalog-price-check-btn')) {
+    popupSmall.style.display = "block";
+  }
+});
 
-    Array.from(closeBtn).forEach(function (element) {
-      element.addEventListener("click", function() {
-        popupBasket.style.display = "none";
-        popupSmall.style.display = "none";
-        basketOrder.style.display = "none";
-      });
-    });
+Array.from(closeBtn).forEach(function (element) {
+  element.addEventListener("click", function() {
+    popupBasket.style.display = "none";
+    popupSmall.style.display = "none";
+    basketOrder.style.display = "none";
+  });
+});
 
-    openBasketBtn.addEventListener("click", openBasketPopup);
-    basketBtnReturn.addEventListener("click", closePopup);
-    basketOpenMobile.addEventListener("click", openBasketPopup);
-    btnReturnCatalog.addEventListener("click", closeOrder);
+openBasketBtn.addEventListener("click", openBasketPopup);
+basketBtnReturn.addEventListener("click", closePopup);
+basketOpenMobile.addEventListener("click", openBasketPopup);
+btnReturnCatalog.addEventListener("click", closeOrder);
 
 
-    $(function() {
-      $('.phone').mask('+38 (000) 00-00-000');
-    });
+$(function() {
+  $('.phone').mask('+38 (000) 00-00-000');
+});
 
-    function closePopup() {
-      popupBasket.style.display = "none";
-      popupSmall.style.display = "none";
-    }
+function closePopup() {
+  popupBasket.style.display = "none";
+  popupSmall.style.display = "none";
+}
 
-    function openBasketPopup() {
-      popupBasket.style.display = "block";
-    }
+function openBasketPopup() {
+  popupBasket.style.display = "block";
+}
 
-    function openBasketOrderPopup() {
-      popupBasket.style.display = "none";
-    }
+function openBasketOrderPopup() {
+  popupBasket.style.display = "none";
+}
 
-    function closeOrder(){
+function closeOrder() {
       basketOrder.style.display = "none";
-    }
+}
+
+$(".menu__item").click(function () {
+  menuToggle.checked = false;
+});

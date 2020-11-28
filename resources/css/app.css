@@ -168,6 +168,7 @@ button:hover {
 	top: -8px;
 	left: -10px;
 	border-radius: 50%;
+	display: none;
  }
 
  .header__mobile {
@@ -1018,17 +1019,15 @@ table	{
 	font-weight: 600;
 	line-height: 18.3px;
 	padding: 10px 0px;
+	text-align: center;
+	width: 15%;
 }
 
 .basket__title {
 	background-color: #ededed;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
-}
-
-.basket__title-item {
-	text-align: center;
 }
 
 .basket__item {
@@ -1071,7 +1070,7 @@ table	{
 	width: 15%;
 }
 
-.subtotal, .delete, .number {
+.subtotal, .number {
 	width: 15%;
 	text-align: center;
 }
@@ -1843,8 +1842,8 @@ input[type="number"] {
 		font-size: 20px;
 	}
 
-	.basket-btn-order {
-		align-items: center;
+	.basket-btn-accept {
+		height: 100px;
 	}
 
 	.basket-btn-order p {

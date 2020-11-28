@@ -88,12 +88,12 @@
 						<span></span>
 					</label>
 					<ul class="menu__box">
-						<li><a href="#about" class="menu__item">{{__('О нас')}}</a></li>
-						<li><a href="#catalog"class="menu__item">{{__('Продукция')}}</a></li>
-						<li><a href="#print" class="menu__item">{{__('Печать с логотипом')}}</a></li>
-						<li><a href="#wholesale" class="menu__item">{{__('Партнерам')}}</a></li>
-						<li><a href="#review" class="menu__item">{{__('Отзывы')}}</a></li>
-						<li><a href="#footer" class="menu__item">{{__('Контакты')}}</a></li>
+						<li><a href="#about" class="menu__item" menu-mobile>{{__('О нас')}}</a></li>
+						<li><a href="#catalog"class="menu__item" menu-mobile>{{__('Продукция')}}</a></li>
+						<li><a href="#print" class="menu__item" menu-mobile>{{__('Печать с логотипом')}}</a></li>
+						<li><a href="#wholesale" class="menu__item" menu-mobile>{{__('Партнерам')}}</a></li>
+						<li><a href="#review" class="menu__item" menu-mobile>{{__('Отзывы')}}</a></li>
+						<li><a href="#footer" class="menu__item" menu-mobile>{{__('Контакты')}}</a></li>
 					</ul>
 				</div>
 				<div class="header__mobile-logo">
