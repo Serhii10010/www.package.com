@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use App\Mail\OrderMail;
-use Carbon\Carbon;
+// use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
