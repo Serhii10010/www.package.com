@@ -140,6 +140,60 @@ var shoppingCart = (function() {
 // Triggers / Events
 // *****************************************
 
+function createCartItem (itemData) {
+  const item = document.createElement("div");
+  item.setAttribute("class", "basket__product-container");
+  item.setAttribute("cart-item", "null");
+  item.setAttribute("style", "display: flex;");
+  item.setAttribute("product-id", itemData.id);
+  item.innerHTML = `
+  <div class="basket__product-desc name">
+    <p class="basket__product-desc-title" cart-item-name>${itemData.name}</p>
+    <div class="basket__img">
+      <img src="${'http://www.package.com/storage/' + itemData.image}" cart-item-image>
+    </div>
+      <p class="basket__product-desc-min" cart-item-min-order-qty>
+        Минимальный заказ 200 шт
+      </p>
+  </div>
+  <div class="basket__product-desc characteristics">
+    <table>
+      <tr>
+        <td>Размер</td>
+        <td class="basket__product-size" cart-item-size>${itemData.size}</td>
+      </tr>
+      <tr>
+        <td>Радиус колеса</td>
+        <td class="basket__product-wheel_radius" cart-item-wheel-radius>${itemData.wheel_radius}</td>
+      </tr>
+      <tr>
+        <td>Упаковка</td>
+        <td class="basket__product-packaging" cart-item-packaging>${itemData.packaging}</td>
+      </tr>
+      <tr>
+        <td>Цвет</td>
+        <td class="basket__product-color" cart-item-color>${itemData.color}</td>
+      </tr>
+      <tr>
+        <td>Материал</td>
+        <td class="basket__product-material" cart-item-material>${itemData.material}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="basket__product-desc price" cart-item-price>${itemData.price}</div>
+  <div class="basket__product-desc number">
+    <div class="quantity-block">
+      <a class="quantity-arrow-minus minus" cart-item-minus cart-item-change-quantity><img src="images/minus.png"></a>
+      <input class="quantity-num" type="number" value="${itemData.count}" min="1" cart-item-quantity/>
+      <a class="quantity-arrow-plus plus" cart-item-plus cart-item-change-quantity><img src="images/plus.png"></a>
+    </div>
+  </div>
+  <div class="basket__product-desc units">шт.</div>
+  <div class="basket__product-desc subtotal" cart-item-subtotal>${itemData.total}</div>
+  <a class="delete-item delete" id="delete-item" cart-item-delete>X</a>`;
+  return item;
+}
+
 function displayCart() {
   var cartArray = shoppingCart.listCart();
 
@@ -168,28 +222,11 @@ function displayCart() {
             break;
           }
         }
-
-        cartItemNew.removeAttribute('cart-item-new');
-        cartItemNew.setAttribute('cart-item', null);
-        cartItemNew.setAttribute('product-id', item.id);
-
-        cartItemNew.querySelector('p[cart-item-name]').innerHTML = item.name;
-        cartItemNew.querySelector('img[cart-item-image]').setAttribute('src', 'http://www.package.com/storage/' + item.image);
-        cartItemNew.querySelector('p[cart-item-min-order-qty]').innerHTML = "Минимальный заказ 200";
-        cartItemNew.querySelector('td[cart-item-size]').innerHTML = item.size;
-        cartItemNew.querySelector('td[cart-item-wheel-radius]').innerHTML = item.wheel_radius;
-        cartItemNew.querySelector('td[cart-item-packaging]').innerHTML = item.packaging;
-        cartItemNew.querySelector('td[cart-item-color]').innerHTML = item.color;
-        cartItemNew.querySelector('input[cart-item-quantity]').value = itemCount;
-        cartItemNew.querySelector('td[cart-item-material]').innerHTML = item.material;
-        cartItemNew.querySelector('div[cart-item-price]').innerHTML = item.price;
-        cartItemNew.querySelector('div[cart-item-subtotal]').innerHTML = parseFloat(itemTotal).toFixed(2);
-        cartItemNew.style.display = 'flex';
-
-        //adding new html elements to cart
-        basketProduct.prepend(cartItemNew);
-        let basketChechout = cartItemNew.cloneNode(true);
-        basketProductCheckout.prepend(basketChechout);
+        item.count = itemCount;
+        item.total = itemTotal;
+        newCartItem = createCartItem(item);
+        basketProduct.prepend(newCartItem);
+        basketProductCheckout.prepend(newCartItem.cloneNode(true));
 
         //adding button "in cart" or "order"
         $(`div[catalog-item-id=\'${item.id}\']`).find('.catalog-price').css('display', 'none');

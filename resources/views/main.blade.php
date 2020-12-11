@@ -503,52 +503,6 @@
 				<div class="delete"></div>
 			</div>
 			<div class="basket__product" id="basket__product" basket-items>
-				<div class="basket__product-container" id="basket__product-container" data-id="rowId" style="display:none;" cart-item-new>
-					<div class="basket__product-desc name">
-						<p class="basket__product-desc-title" cart-item-name></p>
-						<div class="basket__img">
-							<img src="images/78927403_pakety-dlya-shin_5.png" cart-item-image>
-						</div>
-							<p class="basket__product-desc-min" cart-item-min-order-qty>
-								Минимальный заказ 200 шт
-							</p>
-					</div>
-					<div class="basket__product-desc characteristics">
-						<table>
-							<tr>
-								<td>Размер</td>
-								<td class="basket__product-size" cart-item-size></td>
-							</tr>
-							<tr>
-								<td>Радиус колеса</td>
-								<td class="basket__product-wheel_radius" cart-item-wheel-radius></td>
-							</tr>
-							<tr>
-								<td>Упаковка</td>
-								<td class="basket__product-packaging" cart-item-packaging></td>
-							</tr>
-							<tr>
-								<td>Цвет</td>
-								<td class="basket__product-color" cart-item-color></td>
-							</tr>
-							<tr>
-								<td>Материал</td>
-								<td class="basket__product-material" cart-item-material></td>
-							</tr>
-						</table>
-					</div>
-					<div class="basket__product-desc price" cart-item-price></div>
-					<div class="basket__product-desc number">
-						<div class="quantity-block">
-							<a class="quantity-arrow-minus minus" cart-item-minus cart-item-change-quantity><img src="images/minus.png"></a>
-							<input class="quantity-num" type="number" value="" min="1" cart-item-quantity/>
-							<a class="quantity-arrow-plus plus" cart-item-plus cart-item-change-quantity><img src="images/plus.png"></a>
-						</div>
-					</div>
-					<div class="basket__product-desc units">шт.</div>
-					<div class="basket__product-desc subtotal" cart-item-subtotal></div>
-					<a class="delete-item delete" id="delete-item" cart-item-delete>X</a>
-				</div>
 				<div class="basket-finish-price">
 					<p><span class="basket-finish-price-units" cart-items-count></span> товара(ов) на сумму <span class="basket-finish-price-total" cart-total-price></span><span class="basket-finish-price-total"> грн</span></p>
 				</div>
